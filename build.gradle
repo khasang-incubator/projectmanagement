@@ -1,16 +1,44 @@
-plugins {
-    id 'java'
+
+// уточнение билда через скрипт
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // какой версии будет у нас спринг бут
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.3.RELEASE")
+    }
 }
 
+// подключение плагинов
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+// название группы нашего проекта - может быть отличным при многомодульном проекте
 group 'projectmanagement'
+// номер версии
 version '1.0-SNAPSHOT'
 
+// проверка версии java
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
+    // откуда берем библиотеки
     mavenCentral()
+    maven {url "http://repo.spring.io/libs-snapshot"}
 }
 
 dependencies {
+    // сами библиотеки
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-tomcat")
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.16'
+    compile group: 'javax.servlet.jsp.jstl', name: 'jstl', version: '1.2'
+    compile group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.1'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
