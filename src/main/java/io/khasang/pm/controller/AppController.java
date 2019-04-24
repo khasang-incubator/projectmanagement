@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // MVC - Spring MVC
 @Controller
 public class AppController {
-    @Autowired
-    @Qualifier("dog")
-    private Animal animal;
+//    @Autowired
+//    @Qualifier("dog")
+//    private Animal animal;
 
     // http://localhost:8080/cat
     @RequestMapping("/")
