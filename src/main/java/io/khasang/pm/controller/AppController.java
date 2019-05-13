@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @ImportResource(value = "classpath:ioc.xml")
 public class AppController {
 
-    @Autowired
-    @Value("Barsik")
-    private Cat cat;
 
     private Rabbit rabbit = new Rabbit();
 
