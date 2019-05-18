@@ -1,7 +1,7 @@
 package io.khasang.pm.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import io.khasang.pm.model.CreateTable;
+import io.khasang.pm.model.InsertIntoTable;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @ImportResource(value = "classpath:ioc.xml")
 public class AppController {
 
+    private CreateTable createTable;
+    private InsertIntoTable insertIntoTable;
+    private Rabbit rabbit;
 
-    private Rabbit rabbit = new Rabbit();
-
-    public AppController(Rabbit rabbit) {
+    public AppController(CreateTable createTable, InsertIntoTable insertIntoTable, Rabbit rabbit) {
+        this.createTable = createTable;
+        this.insertIntoTable = insertIntoTable;
         this.rabbit = rabbit;
     }
 
@@ -28,4 +31,15 @@ public class AppController {
         return "hello";
     }
 
+    @RequestMapping("/create")
+    public String createTable(Model model) {
+        model.addAttribute("status", createTable.getTableCreartionStatus());
+        return "create";
+    }
+
+    @RequestMapping("/insert")
+    public String insertTable(Model model) {
+        model.addAttribute("status", insertIntoTable.getTableInsertionStatus());
+        return "insert";
+    }
 }
