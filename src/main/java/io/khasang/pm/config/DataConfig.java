@@ -15,15 +15,13 @@ import javax.sql.DataSource;
 public class DataConfig {
 private Environment environment;
 
-
-
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.driver"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.postgresql.url"));
         dataSource.setUsername(environment.getRequiredProperty("jdbc.postgresql.username"));
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.postgresql.password"));
+        dataSource.setPassword(environment.getRequiredProperty("jdbc.postgresql.password"));
         return dataSource;
     }
 
