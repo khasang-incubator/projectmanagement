@@ -44,6 +44,7 @@ public class SimpleQueries implements Queries{
         List<Cat> packOfCats = this.jdbcTemplate.query(sql,(ResultSet rs, int rowNum)->{
             Cat cat = new Cat();
             cat.setName(rs.getString("name"));
+            cat.setColor(rs.getString("color"));
             return cat;
         });
         return "selected";
