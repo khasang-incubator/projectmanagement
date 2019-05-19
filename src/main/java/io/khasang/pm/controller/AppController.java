@@ -72,4 +72,22 @@ public class AppController {
         model.addAttribute("status", selectFromTable.getTableSelectionStatusWithInnerJoin());
         return "queryStatus";
     }
+
+    @RequestMapping("/select_left_join")
+    public String selectFromTableWithLeftJoin(Model model) {
+        model.addAttribute("status", selectFromTable.getTableSelectionStatusWithLeftJoin());
+        return "queryStatus";
+    }
+
+    @RequestMapping("/select_right_join")
+    public String selectFromTableWithRightJoin(Model model) {
+        model.addAttribute("status", selectFromTable.getTableSelectionStatusWithRightJoin());
+        return "queryStatus";
+    }
+
+    @RequestMapping("/select_full_join")
+    public String selectFromTableWithFullJoin(Model model) {
+        model.addAttribute("status", selectFromTable.getTableSelectionStatusWithFullJoin());
+        return "queryStatus";
+    }
 }
