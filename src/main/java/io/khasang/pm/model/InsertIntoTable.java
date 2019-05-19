@@ -9,9 +9,13 @@ public class InsertIntoTable {
     private JdbcTemplate jdbcTemplate;
 
     public String getTableInsertionStatus() {
-        jdbcTemplate.execute("insert into dogs(name) values ('Jack') ;");
-        jdbcTemplate.execute("insert into dogs(name) values ('Daniel') ;");
-        jdbcTemplate.execute("insert into dogs(name) values ('Sharic') ;");
+        jdbcTemplate.execute("insert into dogs(name, color_id) values ('Jack', 1) ;");
+        jdbcTemplate.execute("insert into dogs(name, color_id) values ('Daniel', 2) ;");
+        jdbcTemplate.execute("insert into dogs(name, color_id) values ('Sharic', 3) ;");
+        jdbcTemplate.execute("insert into colors(color) values ('black') ;");
+        jdbcTemplate.execute("insert into colors(color) values ('white') ;");
+        jdbcTemplate.execute("insert into colors(color) values ('brown') ;");
+        jdbcTemplate.execute("insert into colors(color) values ('foxy') ;");
         return "data inserted into table";
     }
 
