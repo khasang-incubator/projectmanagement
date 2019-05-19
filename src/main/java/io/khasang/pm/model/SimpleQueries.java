@@ -1,8 +1,14 @@
 package io.khasang.pm.model;
 
+import io.khasang.pm.controller.Cat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class SimpleQueries implements Queries{
@@ -34,9 +40,12 @@ public class SimpleQueries implements Queries{
 
     @Override
     public String getSelectionStatus() {
-        String sql = "select * from pm.public.cats";
-        //sql="select * from cats inner join colors on (cats.color_id=colors.id)";
-        this.jdbcTemplate.execute(sql);
+        String sql = "select * from cats inner join colors on (cats.color_id=colors.id)";
+        List<Cat> packOfCats = this.jdbcTemplate.query(sql,(ResultSet rs, int rowNum)->{
+            Cat cat = new Cat();
+            cat.setName(rs.getString("name"));
+            return cat;
+        });
         return "selected";
     }
 
