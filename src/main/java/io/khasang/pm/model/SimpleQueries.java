@@ -54,4 +54,11 @@ public class SimpleQueries implements Queries{
         this.jdbcTemplate.execute(sql);
         return "udated";
     }
+
+    @Override
+    public String deleteData() {
+        String sql = "delete from pm.public.dogs where id = 1";
+        this.jdbcTemplate.execute(sql);
+        return "deleted";
+    }
 }

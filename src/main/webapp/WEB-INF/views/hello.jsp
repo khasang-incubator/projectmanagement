@@ -13,5 +13,7 @@
 <br>
 <a href='/update'>update</a>
 <br>
+<a href='/delete'>delete</a>
+<br>
 </body>
 </html>

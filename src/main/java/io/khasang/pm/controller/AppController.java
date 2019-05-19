@@ -44,4 +44,10 @@ public class AppController {
         model.addAttribute("status", simpleQueries.updateData());
         return "result";
     }
+
+    @RequestMapping("/delete")
+    public String deleteFromTable(Model model){
+        model.addAttribute("status", simpleQueries.deleteData());
+        return "result";
+    }
 }

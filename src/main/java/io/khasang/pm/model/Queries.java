@@ -5,4 +5,5 @@ public interface Queries {
     String getSelectionStatus();
     String insertData();
     String updateData();
+    String deleteData();
 }
