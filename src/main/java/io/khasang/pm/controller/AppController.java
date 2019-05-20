@@ -1,6 +1,7 @@
 package io.khasang.pm.controller;
 
 import io.khasang.pm.model.CreateTable;
+import io.khasang.pm.model.SelectTable;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AppController {
 
     private CreateTable createTable;
+    private SelectTable selectTable;
     private Rabbit rabbit;
 
-    public AppController(CreateTable createTable, Rabbit rabbit) {
+    public AppController(SelectTable selectTable,CreateTable createTable, Rabbit rabbit) {
         this.createTable = createTable;
         this.rabbit = rabbit;
+        this.selectTable = selectTable;
     }
 
     @RequestMapping("/")
@@ -32,6 +35,12 @@ public class AppController {
     public String createTable(Model model){
         model.addAttribute("status",createTable.getTableCreationStatus());
         return "create";
+    }
+
+    @RequestMapping("/select")
+    public String selectTable(Model model){
+        model.addAttribute("status",selectTable.getTableSelectStatus());
+        return "select";
     }
 
 }

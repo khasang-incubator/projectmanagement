@@ -9,15 +9,18 @@ public class CreateTable {
     private JdbcTemplate jdbcTemplate;
 
     public String getTableCreationStatus(){
-        jdbcTemplate.execute("DROP TABLE IF EXISTS dogs");
-        jdbcTemplate.execute("create table dogs\n" +
-                "(\n" +
-                "\tid int,\n" +
-                "\tname varchar(255)\n" +
-                ");\n" +
-                "\n" +
-                "create unique index dogs_id_uindex\n" +
-                "\ton dogs (id);\n");
+
+        jdbcTemplate.execute("select * from ships");
+//        jdbcTemplate.execute("DROP TABLE IF EXISTS dogs");
+//        jdbcTemplate.execute("create table dogs\n" +
+//                "(\n" +
+//                "\tid int,\n" +
+//                "\tname varchar(255)\n" +
+//                ");\n" +
+//                "\n" +
+//                "create unique index dogs_id_uindex\n" +
+//                "\ton dogs (id);\n");
+
         return "table created";
     }
 
