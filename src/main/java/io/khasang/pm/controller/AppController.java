@@ -2,6 +2,7 @@ package io.khasang.pm.controller;
 
 import io.khasang.pm.model.*;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,6 @@ public class AppController {
     private SelectFromTable selectFromTable;
     private DeleteFromTable deleteFromTable;
     private UpdateTable updateTable;
-
     private Rabbit rabbit;
 
     public AppController(CreateTable createTable, InsertIntoTable insertIntoTable, SelectFromTable selectFromTable, DeleteFromTable deleteFromTable, UpdateTable updateTable, Rabbit rabbit) {

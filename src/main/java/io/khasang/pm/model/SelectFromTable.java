@@ -1,16 +1,32 @@
 package io.khasang.pm.model;
 
+import io.khasang.pm.controller.Dog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class SelectFromTable {
     private JdbcTemplate jdbcTemplate;
 
-    public String getTableSelectionStatus() {
-        jdbcTemplate.execute("select d.name, c.color from dogs d, colors c where d.color_id=c.id;");
-        return "data selected from table";
+    public List<String> getTableSelectionStatus() {
+//        jdbcTemplate.execute("select d.name, c.color from dogs d, colors c where d.color_id=c.id;");
+        List<String> list = jdbcTemplate.query("select d.name, c.color from dogs d, colors c where d.color_id=c.id;", new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append(rs.getString("name"));
+                stringBuffer.append(" is ");
+                stringBuffer.append(rs.getString("color"));
+                return stringBuffer.toString();
+            }
+        });
+        return list;//"data selected from table";
     }
 
     public String getTableSelectionStatusWithInnerJoin() {

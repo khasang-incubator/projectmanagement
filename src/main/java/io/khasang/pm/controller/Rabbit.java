@@ -43,5 +43,4 @@ public class Rabbit {
     public void init() {
         System.err.println("Rabbit is coming...");
     }
-
 }
