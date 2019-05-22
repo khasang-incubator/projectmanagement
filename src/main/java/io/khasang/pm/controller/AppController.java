@@ -43,4 +43,14 @@ public class AppController {
         return "select";
     }
 
+    @RequestMapping("user")
+    public String getUserPage(){
+        return "user";
+    }
+
+    @RequestMapping("admin")
+    public String getAdminPage(){
+        return "admin";
+    }
+
 }
