@@ -2,8 +2,10 @@ package io.khasang.pm.controller;
 
 import io.khasang.pm.model.Queries;
 import io.khasang.pm.model.SimpleQueries;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -51,5 +53,22 @@ public class AppController {
     public String deleteFromTable(Model model){
         model.addAttribute("status", simpleQueries.deleteData());
         return "result";
+    }
+
+    @RequestMapping("/user")
+    public String getUserPage(){
+        return "user";
+    }
+
+    @RequestMapping("/admin")
+    public String getAdminPage(){
+        return "admin";
+    }
+
+    @RequestMapping("/password/{password}")
+    public String getEncryptPassword(@PathVariable("password") String password, Model model){
+        model.addAttribute("password", password);
+        model.addAttribute("passwordAfterEncrypt", new BCryptPasswordEncoder().encode(password));
+        return "password";
     }
 }
