@@ -1,6 +1,7 @@
 package io.khasang.pm.config;
 
 import org.eclipse.jdt.internal.compiler.batch.FileSystem;
+import org.graalvm.compiler.lir.LIRInstruction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -9,11 +10,16 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import javax.sql.DataSource;
 
 @Configuration
 @PropertySource(value = "classpath:util.properties")
+@PropertySource(value = "classpath:auth.properties")
 public class DataConfig {
     private Environment environment;
 
@@ -38,4 +44,25 @@ public class DataConfig {
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
+    //NOT FOR PRODACTION. ONLY FOR LEARN
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        User.UserBuilder users = User.withDefaultPasswordEncoder();
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(users.username("user").password("user").roles("USER").build());
+//        manager.createUser(users.username("admin").password("admin").roles("ADMIN").build());
+//        return manager;
+//    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        JdbcDaoImpl dao = new JdbcDaoImpl();
+        dao.setDataSource(dataSource());
+        dao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
+        dao.setAuthoritiesByUsernameQuery(environment.getRequiredProperty("rolesByQuery"));
+        return dao;
+    }
+
+
 }
