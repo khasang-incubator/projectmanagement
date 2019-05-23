@@ -18,7 +18,7 @@ public class SerurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").access("hasRole('ADMIN'')")
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .antMatchers("/user/**").access("hasRole('USER')")
                 .antMatchers("/").permitAll()
                 .and().csrf().disable().cors().disable().formLogin().defaultSuccessUrl("/", false);
