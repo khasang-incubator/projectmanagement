@@ -38,7 +38,7 @@ public class SimpleQueries implements Queries{
 
     @Override
     public String getSelectionStatus() {
-        String sql = "select * from old_cats inner join colors on (old_cats.color_id=colors.id)";
+        String sql = "select * from old_cats inner join old_colors on (old_cats.color_id=old_colors.id)";
         List<Cat> packOfCats = this.jdbcTemplate.query(sql,(ResultSet rs, int rowNum)->{
             Cat cat = new Cat();
             cat.setName(rs.getString("name"));

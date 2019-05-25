@@ -13,7 +13,8 @@ public class Cat {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private int color_id;
+    @ManyToOne
+    private Color catColor;
     private String description;
 
     public long getId() {
@@ -32,12 +33,12 @@ public class Cat {
         this.name = name;
     }
 
-    public int getColor_id() {
-        return color_id;
+    public Color getCatColor() {
+        return catColor;
     }
 
-    public void setColor_id(int color_id) {
-        this.color_id = color_id;
+    public void setCatColor(Color catColor) {
+        this.catColor = catColor;
     }
 
     public String getDescription() {
