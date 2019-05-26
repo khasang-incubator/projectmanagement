@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Transactional
-public class BasicDaoImpl<T> implements BasicDao {
+public class BasicDaoImpl<T> implements BasicDao<T> {
     private final Class<T> entityClass;
     protected SessionFactory sessionFactory;
 
@@ -21,25 +21,25 @@ public class BasicDaoImpl<T> implements BasicDao {
     }
 
     @Override
-    public Object add(Object entity) {
+    public T add(T entity) {
         getSession().save(entity);
         return entity;
     }
 
     @Override
-    public Object update(Object entity) {
+    public T update(T entity) {
         getSession().update(entity);
         return entity;
     }
 
     @Override
-    public Object delete(Object entity) {
+    public T delete(T entity) {
         getSession().delete(entity);
         return entity;
     }
 
     @Override
-    public Object getById(long id) {
+    public T getById(long id) {
         return getSession().get(entityClass, id);
     }
 
@@ -56,10 +56,5 @@ public class BasicDaoImpl<T> implements BasicDao {
 
     protected Session getSession() {
         return sessionFactory.getCurrentSession();
-    }
-
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
     }
 }
