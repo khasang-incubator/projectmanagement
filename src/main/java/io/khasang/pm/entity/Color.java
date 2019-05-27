@@ -12,8 +12,8 @@ public class Color {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String color;
-    @OneToMany
-    private Set<Cat> cats = new HashSet<Cat>();
+ //  @OneToMany
+ //   private Set<Cat> cats = new HashSet<Cat>();
 
     public long getId() {
         return id;
