@@ -14,9 +14,9 @@ import java.util.List;
 public class SelectFromTable {
     private JdbcTemplate jdbcTemplate;
 
-    public List<String> getTableSelectionStatus() {
-//        jdbcTemplate.execute("select d.name, c.color from dogs d, colors c where d.color_id=c.id;");
-        List<String> list = jdbcTemplate.query("select d.name, c.color from dogs d, colors c where d.color_id=c.id;", new RowMapper<String>() {
+    public String getTableSelectionStatus() {
+        jdbcTemplate.execute("select d.name, c.color from dogs d, colors c where d.color_id=c.id;");
+/*        List<String> list = jdbcTemplate.query("select d.name, c.color from dogs d, colors c where d.color_id=c.id;", new RowMapper<String>() {
             @Override
             public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                 StringBuffer stringBuffer = new StringBuffer();
@@ -26,7 +26,8 @@ public class SelectFromTable {
                 return stringBuffer.toString();
             }
         });
-        return list;//"data selected from table";
+        return list;*/
+        return "data selected from table";
     }
 
     public String getTableSelectionStatusWithInnerJoin() {

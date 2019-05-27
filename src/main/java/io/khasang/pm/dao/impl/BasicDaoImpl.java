@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public class BasicDaoImpl<T> implements BasicDao<T> {
     private final Class<T> entityClass;
-    protected SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public BasicDaoImpl(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -54,7 +54,12 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return getSession().createQuery(criteriaQuery).list();
     }
 
-    protected Session getSession() {
+    private Session getSession() {
         return sessionFactory.getCurrentSession();
+    }
+
+    @Autowired
+    protected void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }
