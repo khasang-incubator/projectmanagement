@@ -1,4 +1,6 @@
 package io.khasang.pm.dao;
 
-public interface CatDao {
+import io.khasang.pm.entity.Cat;
+
+public interface CatDao extends BasicDao<Cat> {
 }
