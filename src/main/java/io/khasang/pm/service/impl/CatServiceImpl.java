@@ -28,6 +28,17 @@ public class CatServiceImpl implements CatService {
         return catDao.getAll();
     }
 
+    @Override
+    public Cat update(Cat cat) {
+        return catDao.update(cat);
+    }
+
+    @Override
+    public Cat saveOrUpdate(Cat cat) {
+        return catDao.saveOrUpdate(cat);
+    }
+
+
     @Autowired
     public void setCatDao(CatDao catDao) {
         this.catDao = catDao;

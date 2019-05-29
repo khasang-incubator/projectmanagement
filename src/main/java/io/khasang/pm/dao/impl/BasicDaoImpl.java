@@ -42,6 +42,19 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         return getSession().createQuery(criteriaQuery).list();
     }
 
+    @Override
+    public T update(T entity) {
+        getSession().update(entity);
+        return entity;
+    }
+
+    @Override
+    public T saveOrUpdate(T entity) {
+        getSession().saveOrUpdate(entity);
+        return null;
+    }
+
+
     private Session getSession(){
         return sessionFactory.getCurrentSession();
     }

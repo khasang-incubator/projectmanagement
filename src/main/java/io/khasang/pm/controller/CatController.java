@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
 @Controller
@@ -15,10 +14,11 @@ import java.util.List;
 public class CatController {
     private CatService catService;
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)//"application/json;charset=utf-8"
+    @RequestMapping(value = "/add",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public Cat addCat(@RequestBody Cat cat){
         return catService.add(cat);
+       // return catService.saveOrUpdate(cat);
     }
 
     @RequestMapping(value = "/get/{id}",method = RequestMethod.GET)
@@ -32,13 +32,20 @@ public class CatController {
     public List<Cat> getAll(){
         return catService.getAll();
     }
-/*
-    @RequestMapping(value = "/update/",method = RequestMethod.PUT)
-    @ResponseBody
-    public Cat update(){
 
+    @RequestMapping(value = "/update/{id}",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public Cat update(@PathVariable("id") long id){
+        try {
+            Cat updatedCat = catService.getById(id);
+            updatedCat.setName("новый " + updatedCat.getName());
+            return catService.saveOrUpdate(updatedCat);
+        } catch (NullPointerException npe) {
+
+        }
+        return null;
     }
-*/
+
     @Autowired
     public void setCatService(CatService catService) {
         this.catService = catService;

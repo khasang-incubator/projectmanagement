@@ -19,14 +19,22 @@ public interface CatService {
      *
      * @param id
      * @return cat by id
-     */
+    */
     public Cat getById(long id);
 
     /**
      * gettint all cats
      *
      * @return list of all cats
-     */
+    */
     public List<Cat> getAll();
 
+    /**
+     *  update cat in db
+     *
+     * @return updated cat
+    */
+    public Cat update(Cat cat);
+
+    public Cat saveOrUpdate(Cat cat);
 }

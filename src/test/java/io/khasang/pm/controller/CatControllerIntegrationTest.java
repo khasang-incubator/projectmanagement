@@ -16,6 +16,7 @@ public class CatControllerIntegrationTest {
     private static final String ADD = "/add";
     private static final String GET = "/get";
     private static final String ALL = "/all";
+    private static final String UPDATE = "/update";
 
     @Test
     public void checkAddCat(){
@@ -56,6 +57,10 @@ public class CatControllerIntegrationTest {
 
     }
 
+    @Test
+    public void checkUpdate(){
+
+    }
 
     private Cat createCat() {
         HttpHeaders headers = new HttpHeaders();
@@ -73,15 +78,15 @@ public class CatControllerIntegrationTest {
         ).getBody();
 
         assertNotNull(createdCat);
-        assertEquals("MoonyCat",createdCat.getName());
+        assertEquals("red",createdCat.getName());
 
         return createdCat;
     }
 
     private Cat prefillCat() {
         Cat cat = new Cat();
-        cat.setName("MoonyCat");
-        cat.setDescription("любит гулять ночью");
+        cat.setName("red");
+        cat.setDescription("mad cat");
         return cat;
     }
 }

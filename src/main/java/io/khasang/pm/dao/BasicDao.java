@@ -6,4 +6,6 @@ public interface BasicDao<T> {
     public T add(T entity);
     public T getById(long id);
     public List<T> getAll();
+    public T update(T entity);
+    public T saveOrUpdate(T entity);
 }
