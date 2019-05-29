@@ -18,6 +18,7 @@ public class CatControllerIntergationTest {
     private  static final String ADD = "/add";
     private  static final String GET = "/get";
     private  static final String ALL = "/all";
+    private  static final String UPDATE = "/update";
 
     @Test
     public void checkAddCat() {
@@ -38,6 +39,45 @@ public class CatControllerIntergationTest {
     }
 
     @Test
+    public void checkUpdateCat() {
+        //create cat
+        Cat barsik = createCat();
+
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<Cat> responseEntity = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                Cat.class,
+                barsik.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Cat recievedCat = responseEntity.getBody();
+        assertNotNull(recievedCat);
+
+        //update cat
+        String catName = barsik.getName();
+        barsik.setName("murzik");
+
+        Cat updatedCat = updateCat(barsik);
+
+        template = new RestTemplate();
+        responseEntity = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                Cat.class,
+                updatedCat.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        recievedCat = responseEntity.getBody();
+        assertNotNull(recievedCat);
+        assertNotEquals(catName, recievedCat.getName());
+    }
+
+    @Test
     public void checkGettingAllCats() {
         //add h2db - before test clean all db data
         createCat();
@@ -48,15 +88,12 @@ public class CatControllerIntergationTest {
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                Cat.class,
                 new ParameterizedTypeReference<List<Cat>>() {
                 }
         );
 
         List<Cat> reciviedCats = responseEntity.getBody();
-
         Assert.assertNotNull(reciviedCats);
-
     }
 
     private Cat createCat() {
@@ -77,6 +114,23 @@ public class CatControllerIntergationTest {
         assertNotNull(createdCat);
         assertEquals("barsik", createdCat.getName());
         return createdCat;
+    }
+
+    private Cat updateCat(Cat cat) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        HttpEntity<Cat> entity = new HttpEntity<>(cat, headers);
+        RestTemplate template = new RestTemplate();
+        Cat updatedCat = template.exchange(
+                ROOT + UPDATE,
+                HttpMethod.PUT,
+                entity,
+                Cat.class
+        ).getBody();
+
+        assertNotNull(updatedCat);
+        return updatedCat;
     }
 
     private Cat prefillCat() {
