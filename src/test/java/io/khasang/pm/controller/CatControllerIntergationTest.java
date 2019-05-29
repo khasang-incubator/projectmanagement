@@ -56,7 +56,7 @@ public class CatControllerIntergationTest {
 
     private Cat prefillCat() {
         Cat cat = new Cat();
-        cat.setName("b  arsik");
+        cat.setName("barsik");
         cat.setDescription("good");
         return cat;
     }
