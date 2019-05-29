@@ -32,7 +32,13 @@ public class CatController {
     public List<Cat> getAll(){
         return catService.getAll();
     }
+/*
+    @RequestMapping(value = "/update/",method = RequestMethod.PUT)
+    @ResponseBody
+    public Cat update(){
 
+    }
+*/
     @Autowired
     public void setCatService(CatService catService) {
         this.catService = catService;
