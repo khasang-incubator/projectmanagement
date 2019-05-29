@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.khasang.pm.entity.Cat;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -32,6 +35,28 @@ public class CatControllerIntergationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Cat recievedCat = responseEntity.getBody();
         assertNotNull(recievedCat);
+    }
+
+    @Test
+    public void checkGettingAllCats() {
+        //add h2db - before test clean all db data
+        createCat();
+        createCat();
+
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<List<Cat>> responseEntity = template.exchange(
+                ROOT + ALL,
+                HttpMethod.GET,
+                null,
+                Cat.class,
+                new ParameterizedTypeReference<List<Cat>>() {
+                }
+        );
+
+        List<Cat> reciviedCats = responseEntity.getBody();
+
+        Assert.assertNotNull(reciviedCats);
+
     }
 
     private Cat createCat() {
