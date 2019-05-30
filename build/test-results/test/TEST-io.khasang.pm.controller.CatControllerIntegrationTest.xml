@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="io.khasang.pm.controller.CatControllerIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-05-30T02:20:50" hostname="wks-132" time="0.182">
+<testsuite name="io.khasang.pm.controller.CatControllerIntegrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-05-30T02:35:17" hostname="wks-132" time="0.295">
   <properties/>
-  <testcase name="checkGettingAllCats" classname="io.khasang.pm.controller.CatControllerIntegrationTest" time="0.182"/>
-  <system-out><![CDATA[11:20:50.102 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET http://localhost:8080/cat/all
-11:20:50.133 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
-11:20:50.188 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
-11:20:50.194 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [java.util.List<io.khasang.pm.entity.Cat>]
+  <testcase name="checkAddCat" classname="io.khasang.pm.controller.CatControllerIntegrationTest" time="0.295"/>
+  <system-out><![CDATA[11:35:17.723 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP POST http://localhost:8080/cat/add
+11:35:17.800 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
+11:35:17.821 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Writing [io.khasang.pm.entity.Cat@7c5764ed] as "application/json;charset=UTF-8"
+11:35:17.911 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+11:35:17.915 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [io.khasang.pm.entity.Cat]
+11:35:17.927 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET http://localhost:8080/cat/get/18
+11:35:17.927 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
+11:35:17.989 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+11:35:17.990 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [io.khasang.pm.entity.Cat]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

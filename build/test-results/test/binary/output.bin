@@ -1,4 +1,9 @@
-w11:20:50.102 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET http://localhost:8080/cat/all
-~11:20:50.133 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
-`11:20:50.188 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
-†11:20:50.194 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [java.util.List<io.khasang.pm.entity.Cat>]
+x11:35:17.723 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP POST http://localhost:8080/cat/add
+~11:35:17.800 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
+ 11:35:17.821 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Writing [io.khasang.pm.entity.Cat@7c5764ed] as "application/json;charset=UTF-8"
+`11:35:17.911 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+v11:35:17.915 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [io.khasang.pm.entity.Cat]
+z11:35:17.927 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET http://localhost:8080/cat/get/18
+~11:35:17.927 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
+`11:35:17.989 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+v11:35:17.990 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [io.khasang.pm.entity.Cat]

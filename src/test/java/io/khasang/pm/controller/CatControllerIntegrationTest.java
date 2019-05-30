@@ -1,14 +1,11 @@
 package io.khasang.pm.controller;
 
 import io.khasang.pm.entity.Cat;
-
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.List;
 
 public class CatControllerIntegrationTest {

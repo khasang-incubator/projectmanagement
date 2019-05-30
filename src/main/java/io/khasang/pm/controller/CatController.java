@@ -17,8 +17,7 @@ public class CatController {
     @RequestMapping(value = "/add",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public Cat addCat(@RequestBody Cat cat){
-        return catService.add(cat);
-       // return catService.saveOrUpdate(cat);
+        return catService.saveOrUpdate(cat);
     }
 
     @RequestMapping(value = "/get/{id}",method = RequestMethod.GET)
@@ -45,7 +44,6 @@ public class CatController {
             updatedCat = cat;
         }
         return catService.saveOrUpdate(updatedCat);
-        //return catService.update(updatedCat);
     }
 
     @Autowired
