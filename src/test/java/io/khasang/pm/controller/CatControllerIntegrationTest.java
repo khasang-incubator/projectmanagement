@@ -1,13 +1,14 @@
 package io.khasang.pm.controller;
 
 import io.khasang.pm.entity.Cat;
+
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 public class CatControllerIntegrationTest {
@@ -17,32 +18,36 @@ public class CatControllerIntegrationTest {
     private static final String GET = "/get";
     private static final String ALL = "/all";
     private static final String UPDATE = "/update";
+    private RestTemplate template;
+    private HttpHeaders headers;
+    private HttpEntity<Cat> entity;
+
+    public CatControllerIntegrationTest() {
+        this.template = new RestTemplate();
+        this.headers = new HttpHeaders();
+        this.headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+    }
 
     @Test
-    public void checkAddCat(){
-        Cat barsik = createCat();
+    public void checkAddCat() {
 
-        RestTemplate template = new RestTemplate();
+        Cat newCat = createCat();
         ResponseEntity<Cat> responseEntity = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
                 Cat.class,
-                barsik.getId()
+                newCat.getId()
         );
 
-        assertEquals(HttpStatus.OK,responseEntity.getStatusCode());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Cat reseivedCat = responseEntity.getBody();
         assertNotNull(reseivedCat);
-        assertEquals(barsik.getName(),reseivedCat.getName());
-
+        assertEquals(newCat.getName(), reseivedCat.getName());
     }
 
     @Test
-    public void checkGettingAllCats(){
-     //   createCat();
-
-        RestTemplate template = new RestTemplate();
+    public void checkGettingAllCats() {
         ResponseEntity<List<Cat>> responseEntity = template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
@@ -53,40 +58,55 @@ public class CatControllerIntegrationTest {
         List<Cat> receivedCats = responseEntity.getBody();
 
         assertNotNull(receivedCats);
-        assertEquals(receivedCats.isEmpty(),false);
-
+        assertFalse(receivedCats.isEmpty());
     }
 
     @Test
-    public void checkUpdate(){
+    public void checkUpdate() {
 
+        Cat updatedCat = createCat();
+        updatedCat.setName("new " + updatedCat.getName());
+
+        entity = initHttpEntity(updatedCat);
+        ResponseEntity<Cat> responseChangedEntity = template.exchange(
+                ROOT + UPDATE + "/{id}",
+                HttpMethod.PUT,
+                entity,
+                Cat.class,
+                updatedCat.getId()
+        );
+
+        Cat changedCat = responseChangedEntity.getBody();
+
+        assertEquals(HttpStatus.OK, responseChangedEntity.getStatusCode());
+        assertNotNull(changedCat);
+        assertEquals(changedCat.getName(), updatedCat.getName());
     }
 
     private Cat createCat() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         Cat cat = prefillCat();
-
-        HttpEntity<Cat> entity = new HttpEntity<>(cat, headers);
-        RestTemplate template = new RestTemplate();
+        entity = initHttpEntity(cat);
         Cat createdCat = template.exchange(
-                ROOT+ADD,
+                ROOT + ADD,
                 HttpMethod.POST,
                 entity,
                 Cat.class
         ).getBody();
 
         assertNotNull(createdCat);
-        assertEquals("red",createdCat.getName());
-
+        assertEquals("red12345", createdCat.getName());
         return createdCat;
     }
 
     private Cat prefillCat() {
         Cat cat = new Cat();
-        cat.setName("red");
+        cat.setName("red12345");
         cat.setDescription("mad cat");
         return cat;
+    }
+
+    public HttpEntity<Cat> initHttpEntity(Cat entity) {
+        return new HttpEntity<>(entity, headers);
     }
 }

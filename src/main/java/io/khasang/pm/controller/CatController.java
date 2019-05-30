@@ -35,15 +35,17 @@ public class CatController {
 
     @RequestMapping(value = "/update/{id}",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public Cat update(@PathVariable("id") long id){
-        try {
-            Cat updatedCat = catService.getById(id);
-            updatedCat.setName("новый " + updatedCat.getName());
-            return catService.saveOrUpdate(updatedCat);
-        } catch (NullPointerException npe) {
+    public Cat update(@PathVariable("id") long id,@RequestBody Cat cat){
 
+        Cat updatedCat = catService.getById(id);
+        if (updatedCat != null) {
+            updatedCat.setName(cat.getName());
+            updatedCat.setDescription(cat.getDescription());
+        } else {
+            updatedCat = cat;
         }
-        return null;
+        return catService.saveOrUpdate(updatedCat);
+        //return catService.update(updatedCat);
     }
 
     @Autowired

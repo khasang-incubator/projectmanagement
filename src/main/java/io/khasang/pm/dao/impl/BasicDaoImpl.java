@@ -51,7 +51,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     @Override
     public T saveOrUpdate(T entity) {
         getSession().saveOrUpdate(entity);
-        return null;
+        return entity;
     }
 
 
