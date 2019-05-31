@@ -3,7 +3,7 @@ package io.khasang.pm.controller;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Cat implements Animal {
+public class Cat implements Animal{
     private String name;
 
     public String getName() {
