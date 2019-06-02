@@ -1,8 +1,11 @@
 package io.khasang.pm.controller;
 
+import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+@Service
 public class Rabbit {
     private String name;
     private int age;

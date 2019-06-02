@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AppController {
 
     private CreateTable createTable;
-    private Rabbit rabbit;
 
-    public AppController(CreateTable createTable, Rabbit rabbit) {
+    public AppController(CreateTable createTable) {
         this.createTable = createTable;
-        this.rabbit = rabbit;
     }
 
 
@@ -29,11 +27,8 @@ public class AppController {
     }
 
     @RequestMapping("/")
-    public String getHelloPage(Model model) {
-
-        //something doc
-        model.addAttribute("name", rabbit.getName());
-        return "hello";
+    public String getHelloPage() {
+        return "cat";
     }
 
     @RequestMapping("/create")
