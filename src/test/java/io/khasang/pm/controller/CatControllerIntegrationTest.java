@@ -51,7 +51,7 @@ public class CatControllerIntegrationTest {
                 new ParameterizedTypeReference<List<Cat>>() {
 
                 }
-
+//
         );
         List<Cat> receivedCats = responseEntity.getBody();
         assertNotNull(receivedCats);
