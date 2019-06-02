@@ -15,5 +15,8 @@
 <br>
 <a href='/delete'>delete</a>
 <br>
+<br>
+<a href='/work-with-cat'>Work with Cat</a>
+<br>
 </body>
 </html>
