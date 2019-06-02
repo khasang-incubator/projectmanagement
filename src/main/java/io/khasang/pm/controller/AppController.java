@@ -17,20 +17,16 @@ public class AppController {
 
     private CreateTable createTable;
     private SelectTable selectTable;
-    private Rabbit rabbit;
 
-    public AppController(SelectTable selectTable,CreateTable createTable, Rabbit rabbit) {
+    public AppController(SelectTable selectTable,CreateTable createTable) {
         this.createTable = createTable;
-        this.rabbit = rabbit;
         this.selectTable = selectTable;
     }
 
     @RequestMapping("/")
-    public String getHelloPage(Model model) {
+    public String getHelloPage() {
 
-        //something doc
-        model.addAttribute("name", rabbit.getName());
-        return "hello";
+        return "cat";
     }
 
     @RequestMapping("/create")
