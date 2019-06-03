@@ -26,6 +26,12 @@
     };
 
     var RestGet = function (id) {
+
+        if (id == ""){
+            alert("не указано значение id")
+            return;
+        }
+
         $.ajax({
             type: 'GET',
             url: service + '/get/' + id,
@@ -38,11 +44,55 @@
             },
             error: function (jqXHR, testStatus, errorThrown) {
                 $('#response').html(JSON.stringify(jqXHR))
+                return null;
             }
         });
     };
 
+    var RestUpdate = function (id, name, description){
+
+        if (id == ""){
+            alert("не указано значение id")
+            return;
+        }
+
+        var updatedCat = RestGet(id)
+        if (updatedCat==null){
+            alert("нет объекта с указанным id")
+            return;
+        }
+
+
+        var JSONObject = {
+            'id':id,
+            'name': name,
+            'description': description
+        };
+
+        $.ajax({
+            type: 'PUT',
+            url: service + '/update',
+            dataType: 'json',
+            data: JSON.stringify(JSONObject),
+            accept: 'json',
+            contentType: 'application/json;utf-8',
+            async: false,
+            success: function (result) {
+                $('#response').html(JSON.stringify(result))
+            },
+            error: function (jqXHR, testStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR))
+            }
+        });
+    }
+
     var RestPost = function (name, description) {
+
+        if (name == ""){
+            alert("не указано значение name")
+            return
+        }
+
         var JSONObject = {
             'name': name,
             'description': description
@@ -97,6 +147,16 @@
             name: <input id="catName" value="barsik"/>
             description: <input id="catDescription" value="good"/>
             <button type="button" onclick="RestPost($('#catName').val(), $('#catDescription').val())">try</button>
+        </td>
+    </tr>
+    <tr>
+        <td>update cat - <code><strong>PUT</strong></code></td>
+        <td>/cat/update{cat}</td>
+        <td>
+            id: <input id="catID" value="1"/>
+            name: <input id="catNameUpdate" value="barsik"/>
+            description: <input id="catDescriptionUpdate" value="good"/>
+            <button type="button" onclick="RestUpdate($('#catID').val(),$('#catNameUpdate').val(), $('#catDescriptionUpdate').val())">try</button>
         </td>
     </tr>
 </table>

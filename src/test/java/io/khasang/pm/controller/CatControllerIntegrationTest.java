@@ -66,7 +66,8 @@ public class CatControllerIntegrationTest {
 
         entity = initHttpEntity(updatedCat);
         ResponseEntity<Cat> responseChangedEntity = template.exchange(
-                ROOT + UPDATE + "/{id}",
+                //ROOT + UPDATE + "/{id}",
+                ROOT + UPDATE,
                 HttpMethod.PUT,
                 entity,
                 Cat.class,

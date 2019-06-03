@@ -32,14 +32,18 @@ public class CatController {
         return catService.getAll();
     }
 
-    @RequestMapping(value = "/update/{id}",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/update",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public Cat update(@PathVariable("id") long id,@RequestBody Cat cat){
+    public Cat update(@RequestBody Cat cat){
 
-        Cat updatedCat = catService.getById(id);
+        Cat updatedCat = catService.getById(cat.getId());
         if (updatedCat != null) {
-            updatedCat.setName(cat.getName());
-            updatedCat.setDescription(cat.getDescription());
+            if (!cat.getName().isEmpty()) {
+                updatedCat.setName(cat.getName());
+            }
+            if (!cat.getDescription().isEmpty()) {
+                updatedCat.setDescription(cat.getDescription());
+            }
         } else {
             updatedCat = cat;
         }
