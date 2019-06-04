@@ -8,10 +8,9 @@ import java.sql.Date;
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "doc_id")
     private long id;
     private String docNumber;
-    private Date dateDoc;
+    private Date docDate;
     private String author;
     private String type;
     private String content;
@@ -32,12 +31,12 @@ public class Document {
         this.docNumber = docNumber;
     }
 
-    public Date getDateDoc() {
-        return dateDoc;
+    public Date getDocDate() {
+        return docDate;
     }
 
-    public void setDateDoc(Date dateDoc) {
-        this.dateDoc = dateDoc;
+    public void setDocDate(Date dateDoc) {
+        this.docDate = dateDoc;
     }
 
     public String getAuthor() {

@@ -74,7 +74,7 @@ public class DocumentControllerIntegrationTest {
     private Document prefillDocument() {
         Document doc = new Document();
         doc.setDocNumber("12345/o/99");
-        doc.setDateDoc(Date.valueOf("2019-06-04"));
+        doc.setDocDate(Date.valueOf("2019-06-04"));
         doc.setAuthor("Anonimus");
         doc.setContent("Freedom to parrots!!!");
         doc.setType("declaration");

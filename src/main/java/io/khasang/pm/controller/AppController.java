@@ -30,6 +30,11 @@ public class AppController {
         return "cat";
     }
 
+    @RequestMapping("/doc")
+    public String workWithDoc() {
+        return "doc";
+    }
+
     @RequestMapping("/create")
     public String createTable(Model model) {
         model.addAttribute("status", createTable.getTableCreationStatus());
