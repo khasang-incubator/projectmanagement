@@ -28,7 +28,7 @@ public class AppController {
 
     @RequestMapping("/")
     public String getHelloPage() {
-        return "cat";
+        return "users";
     }
 
     @RequestMapping("/create")
