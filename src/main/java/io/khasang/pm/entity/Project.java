@@ -3,11 +3,11 @@ package io.khasang.pm.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cats")
+@Table(name = "projects")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cat_id")
+    @Column(name = "project_id")
     private long id;
 
     private String name;
