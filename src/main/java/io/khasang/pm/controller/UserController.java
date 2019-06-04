@@ -1,7 +1,7 @@
 package io.khasang.pm.controller;
 
-import io.khasang.pm.entity.Cat;
-import io.khasang.pm.service.CatService;
+import io.khasang.pm.entity.User;
+import io.khasang.pm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,31 +9,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/cat")
-// localhost:8080/cat
-public class CatController {
-    private CatService catService;
+@RequestMapping("/users")
+// localhost:8080/user
+public class UserController {
+    private UserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Cat addCat(@RequestBody Cat cat) {
-        return catService.add(cat);
+    public User addUser(@RequestBody User user) {
+        return userService.add(user);
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Cat getById(@PathVariable("id") long id) {
-        return catService.getById(id);
+    public User getById(@PathVariable("id") long id) {
+        return userService.getById(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Cat> getAll(){
-        return catService.getAll();
+    public List<User> getAll(){
+        return userService.getAll();
     }
 
     @Autowired
-    public void setCatService(CatService catService) {
-        this.catService = catService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
