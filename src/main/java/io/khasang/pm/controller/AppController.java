@@ -33,11 +33,8 @@ public class AppController {
     }
 
     @RequestMapping("/")
-    public String getHelloPage(Model model) {
-
-        //something doc
-        model.addAttribute("name", rabbit.getName());
-        return "hello";
+    public String getHelloPage() {
+        return "cat";
     }
 
     @RequestMapping("/create")
