@@ -20,7 +20,6 @@ public class AppController {
         this.createTable = createTable;
     }
 
-
     @RequestMapping("/admin")
     public String getAdminPage() {
         return "admin";
@@ -29,6 +28,11 @@ public class AppController {
     @RequestMapping("/")
     public String getHelloPage() {
         return "cat";
+    }
+
+    @RequestMapping("/doc")
+    public String workWithDoc() {
+        return "doc";
     }
 
     @RequestMapping("/create")
@@ -49,6 +53,4 @@ public class AppController {
         model.addAttribute("passwordAfterEncode", new BCryptPasswordEncoder().encode(password));
         return "password";
     }
-
-
 }
