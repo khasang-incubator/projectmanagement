@@ -2,8 +2,11 @@ package io.khasang.pm.controller;
 
 import io.khasang.pm.entity.ChildDocument;
 import org.junit.Test;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -28,6 +31,23 @@ public class ChildDocumentControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ChildDocument receivedChildocument = responseEntity.getBody();
         assertNotNull(receivedChildocument);
+    }
+
+    @Test
+    public void checkGettingAllChildDocuments() {
+        createChildDocument();
+        createChildDocument();
+
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<List<ChildDocument>> responseEntity = template.exchange(
+                ROOT + ALL,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ChildDocument>>() {
+                }
+        );
+        List<ChildDocument> receivedChildDocuments = responseEntity.getBody();
+        assertNotNull(receivedChildDocuments);
     }
 
     private ChildDocument createChildDocument() {
