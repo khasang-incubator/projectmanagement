@@ -28,7 +28,7 @@ public class AppController {
 
     @RequestMapping("/")
     public String getHelloPage() {
-        return "users";
+        return "cat";
     }
 
     @RequestMapping("/create")
@@ -40,6 +40,11 @@ public class AppController {
     @RequestMapping("/user")
     public String getUserPage() {
         return "user";
+    }
+
+    @RequestMapping("/users")
+    public String getUsersPage() {
+        return "users";
     }
 
     // localhost:8080/password/admin

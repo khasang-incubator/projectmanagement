@@ -10,7 +10,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/users")
-// localhost:8080/user
 public class UserController {
     private UserService userService;
 

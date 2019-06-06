@@ -95,7 +95,7 @@
     <tr>
         <td>add new user - <code><strong>POST</strong></code></td>
         <td>/users/add</td>
-        <>
+        <td>
             name: <input id="userName" value="defaultName"/>
             login: <input id="userLogin" value="defaultLogin"/>
             password: <input id="userPassword" value="defaultPassword"/>

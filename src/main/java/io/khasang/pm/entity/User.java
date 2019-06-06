@@ -9,8 +9,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
-
     private String name;
+
+    @Column(unique = true, nullable = false)
     private String login;
     private String password;
     private String function;

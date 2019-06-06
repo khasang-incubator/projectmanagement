@@ -21,30 +21,24 @@ public class UserControllerIntegrationTest {
     private static final String ALL = "/all";
 
     @Test
-    public void checkAddUser() {
-        User barsik = createUser();
-
+    public void checkGetUser() {
+        User user = createUser();
         RestTemplate template = new RestTemplate();
         ResponseEntity<User> responseEntity = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
                 User.class,
-                barsik.getId()
+                user.getId()
         );
-
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         User receivedUser = responseEntity.getBody();
         Assert.assertNotNull(receivedUser);
-
-        // update cat
-
-        // select from db
+        Assert.assertEquals("igor", receivedUser.getName());
     }
 
     @Test
     public void checkGettingAllUsers() {
-        // add h2db  - before test clean all db data
         createUser();
         createUser();
 
@@ -64,9 +58,7 @@ public class UserControllerIntegrationTest {
     private User createUser() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-
         User user = prefillUser();
-
         HttpEntity<User> entity = new HttpEntity<>(user, headers);
         RestTemplate template = new RestTemplate();
         User createdUser = template.exchange(
@@ -89,6 +81,4 @@ public class UserControllerIntegrationTest {
         user.setFunction("spec");
         return user;
     }
-
-
 }
