@@ -42,10 +42,12 @@
         });
     };
 
-    var RestPost = function (name, description) {
+    var RestPost = function (name, description, time, presult) {
         var JSONObject = {
             'name': name,
-            'description': description
+            'description': description,
+            'time': time,
+            'result': presult
         };
 
         $.ajax({
@@ -96,7 +98,11 @@
         <td>
             name: <input id="projectName" value="new proj"/>
             description: <input id="projectDescription" value="normal"/>
-            <button type="button" onclick="RestPost($('#projectName').val(), $('#projectDescription').val())">try</button>
+            time: <input id="projectTime" value="normal"/>
+            presult: <input id="projectResult" value="normal"/>
+            <button type="button" onclick="RestPost($('#projectName').val(), $('#projectDescription').val(),
+            $('#projectTime').val(),$('#projectResult').val())">try
+            </button>
         </td>
     </tr>
 </table>

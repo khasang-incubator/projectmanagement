@@ -37,9 +37,6 @@ public class ProjectControllerIntegrationTest {
         Project receivedProject = responseEntity.getBody();
         Assert.assertNotNull(receivedProject);
 
-        // update cat
-
-        // select from db
     }
 
     @Test

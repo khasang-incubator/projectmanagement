@@ -12,7 +12,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/project")
-// localhost:8080/project
 public class ProjectController {
     private ProjectService projectService;
 
