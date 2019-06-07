@@ -1,12 +1,14 @@
 package io.khasang.pm.controller;
 
 import io.khasang.pm.entity.Cat;
+import io.khasang.pm.entity.CatWoman;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -36,9 +38,7 @@ public class CatControllerIntegrationTest {
         Cat receivedCat = responseEntity.getBody();
         Assert.assertNotNull(receivedCat);
 
-        // update cat
 
-        // select from db
     }
 
     @Test
@@ -84,6 +84,20 @@ public class CatControllerIntegrationTest {
         Cat cat = new Cat();
         cat.setName("barsik");
         cat.setDescription("good");
+
+        CatWoman catWoman1 = new CatWoman();
+        catWoman1.setName("Riska");
+        catWoman1.setDescription("good");
+
+        CatWoman catWoman2 = new CatWoman();
+        catWoman2.setName("Riska");
+        catWoman2.setDescription("good");
+
+        List<CatWoman> catWomen = new ArrayList<>();
+        catWomen.add(catWoman1);
+        catWomen.add(catWoman2);
+        cat.setCatWomen(catWomen);
+
         return cat;
     }
 

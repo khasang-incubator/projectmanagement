@@ -1,22 +1,16 @@
 package io.khasang.pm.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "cats")
-public class Cat {
+@Table
+public class CatWoman {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cat_id")
     private long id;
 
     private String name;
     private String description;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<CatWoman> catWomen = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -40,13 +34,5 @@ public class Cat {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<CatWoman> getCatWomen() {
-        return catWomen;
-    }
-
-    public void setCatWomen(List<CatWoman> catWomen) {
-        this.catWomen = catWomen;
     }
 }
