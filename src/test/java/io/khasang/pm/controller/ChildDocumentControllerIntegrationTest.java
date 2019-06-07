@@ -29,8 +29,8 @@ public class ChildDocumentControllerIntegrationTest {
         );
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        ChildDocument receivedChildocument = responseEntity.getBody();
-        assertNotNull(receivedChildocument);
+        ChildDocument receivedChildDocument = responseEntity.getBody();
+        assertNotNull(receivedChildDocument);
     }
 
     @Test
