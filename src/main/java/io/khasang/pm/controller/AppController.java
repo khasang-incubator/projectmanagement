@@ -26,6 +26,11 @@ public class AppController {
         return "admin";
     }
 
+    @RequestMapping("/project")
+    public String getProjectPage() {
+        return "project";
+    }
+
     @RequestMapping("/")
     public String getHelloPage() {
         return "cat";
