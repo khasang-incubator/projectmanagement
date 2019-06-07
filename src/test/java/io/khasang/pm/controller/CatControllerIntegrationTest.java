@@ -38,9 +38,7 @@ public class CatControllerIntegrationTest {
         Cat receivedCat = responseEntity.getBody();
         Assert.assertNotNull(receivedCat);
 
-        // update cat
 
-        // select from db
     }
 
     @Test
