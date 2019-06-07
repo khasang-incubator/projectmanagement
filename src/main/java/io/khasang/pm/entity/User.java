@@ -5,24 +5,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private long id;
     private String name;
 
+    @Id
     @Column(unique = true, nullable = false)
     private String login;
     private String password;
     private String function;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

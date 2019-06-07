@@ -19,10 +19,10 @@ public class UserController {
         return userService.add(user);
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/{login}", method = RequestMethod.GET)
     @ResponseBody
-    public User getById(@PathVariable("id") long id) {
-        return userService.getById(id);
+    public User getById(@PathVariable("login") String login) {
+        return userService.getByLogin(login);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)

@@ -25,10 +25,10 @@
         });
     };
 
-    var RestGet = function (id) {
+    var RestGet = function (login) {
         $.ajax({
             type: 'GET',
-            url: service + '/get/' + id,
+            url: service + '/get/' + login,
             dataType: 'json',
             accept: 'json',
             contentType: 'application/json;utf-8',
@@ -85,11 +85,11 @@
         </td>
     </tr>
     <tr>
-        <td>Get user by id - <code><strong>GET</strong></code></td>
-        <td>/users/get/{id}</td>
+        <td>Get user by login - <code><strong>GET</strong></code></td>
+        <td>/users/get/{login}</td>
         <td>
-            id: <input id="getUserByID" value="1"/>
-            <button type="button" onclick="RestGet($('#getUserByID').val())">try</button>
+            login: <input id="getUserByLogin" value="1"/>
+            <button type="button" onclick="RestGet($('#getUserByLogin').val())">try</button>
         </td>
     </tr>
     <tr>

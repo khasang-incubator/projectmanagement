@@ -33,6 +33,11 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
+    public T getByLogin(String login) {
+        return getSession().get(entityClass, login);
+    }
+
+    @Override
     public List<T> getAll() {
         // select * from table
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();

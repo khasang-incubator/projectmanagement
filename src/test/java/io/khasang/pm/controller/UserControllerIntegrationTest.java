@@ -1,6 +1,5 @@
 package io.khasang.pm.controller;
 
-import io.khasang.pm.entity.Cat;
 import io.khasang.pm.entity.User;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,25 +21,25 @@ public class UserControllerIntegrationTest {
 
     @Test
     public void checkGetUser() {
-        User user = createUser();
+        User user = createUser("asdf1");
         RestTemplate template = new RestTemplate();
         ResponseEntity<User> responseEntity = template.exchange(
-                ROOT + GET + "/{id}",
+                ROOT + GET + "/" + user.getLogin(),
                 HttpMethod.GET,
                 null,
                 User.class,
-                user.getId()
+                user.getLogin()
         );
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         User receivedUser = responseEntity.getBody();
         Assert.assertNotNull(receivedUser);
-        Assert.assertEquals("igor", receivedUser.getName());
+        Assert.assertEquals(user.getLogin(), receivedUser.getLogin());
     }
 
     @Test
     public void checkGettingAllUsers() {
-        createUser();
-        createUser();
+        createUser("asdf2");
+        createUser("asdf3");
 
         RestTemplate template = new RestTemplate();
         ResponseEntity<List<User>> responseEntity = template.exchange(
@@ -55,10 +54,10 @@ public class UserControllerIntegrationTest {
         assertNotNull(receivedUsers);
     }
 
-    private User createUser() {
+    private User createUser(String login) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        User user = prefillUser();
+        User user = prefillUser(login);
         HttpEntity<User> entity = new HttpEntity<>(user, headers);
         RestTemplate template = new RestTemplate();
         User createdUser = template.exchange(
@@ -73,10 +72,10 @@ public class UserControllerIntegrationTest {
         return createdUser;
     }
 
-    private User prefillUser() {
+    private User prefillUser(String login) {
         User user = new User();
         user.setName("igor");
-        user.setLogin("igor");
+        user.setLogin(login);
         user.setPassword("igor");
         user.setFunction("spec");
         return user;

@@ -17,10 +17,10 @@ public interface UserService {
     /**
      * getting specify user by ID
      *
-     * @param id - user's id for receiving
+     * @param login - user's id for receiving
      * @return user by id
      */
-    User getById(long id);
+    User getByLogin(String login);
 
     /**
      * getting all users

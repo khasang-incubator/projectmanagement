@@ -20,6 +20,14 @@ public interface BasicDao<T> {
     T getById(long id);
 
     /**
+     * getting specify entity by ID
+     *
+     * @param login entity's login for receiving
+     * @return entity by login
+     */
+    T getByLogin(String login);
+
+    /**
      * getting all entities
      *
      * @return all entities from DB
