@@ -104,7 +104,7 @@ public class CatControllerIntegrationTest {
         return cat;
     }
 
-    public HttpEntity<Cat> initHttpEntity(Cat entity) {
+    private HttpEntity<Cat> initHttpEntity(Cat entity) {
         return new HttpEntity<>(entity, headers);
     }
 }
