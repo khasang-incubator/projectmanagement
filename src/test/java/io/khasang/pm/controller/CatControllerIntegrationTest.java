@@ -37,8 +37,6 @@ public class CatControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Cat receivedCat = responseEntity.getBody();
         Assert.assertNotNull(receivedCat);
-
-
     }
 
     @Test
@@ -100,6 +98,5 @@ public class CatControllerIntegrationTest {
 
         return cat;
     }
-
 
 }
