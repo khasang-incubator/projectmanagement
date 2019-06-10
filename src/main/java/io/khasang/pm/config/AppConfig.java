@@ -1,17 +1,8 @@
 package io.khasang.pm.config;
 
-import io.khasang.pm.dao.CatDao;
-import io.khasang.pm.dao.ProjectDao;
-import io.khasang.pm.dao.DocumentDao;
-import io.khasang.pm.dao.UserDao;
-import io.khasang.pm.dao.impl.CatDaoImpl;
-import io.khasang.pm.dao.impl.ProjectDaoImpl;
-import io.khasang.pm.dao.impl.DocumentDaoImpl;
-import io.khasang.pm.dao.impl.UserDaoImpl;
-import io.khasang.pm.entity.Cat;
-import io.khasang.pm.entity.Project;
-import io.khasang.pm.entity.Document;
-import io.khasang.pm.entity.User;
+import io.khasang.pm.dao.*;
+import io.khasang.pm.dao.impl.*;
+import io.khasang.pm.entity.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -38,5 +29,11 @@ public class AppConfig {
     public DocumentDao documentDao(){
         return new DocumentDaoImpl(Document.class);
     }
+
+    @Bean
+    public EmployeeDao employeeDao(){
+        return new EmployeeDaoImpl(Employee.class);
+    }
+
 
 }

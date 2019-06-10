@@ -100,6 +100,4 @@ public class CatControllerIntegrationTest {
 
         return cat;
     }
-
-
 }
