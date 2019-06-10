@@ -37,10 +37,6 @@ public class CatControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Cat receivedCat = responseEntity.getBody();
         Assert.assertNotNull(receivedCat);
-
-        // update cat
-
-        // select from db
     }
 
     @Test
@@ -102,6 +98,5 @@ public class CatControllerIntegrationTest {
 
         return cat;
     }
-
 
 }
