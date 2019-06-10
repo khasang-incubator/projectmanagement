@@ -1,5 +1,6 @@
 package io.khasang.pm.service;
 
+import io.khasang.pm.dto.EmployeeDto;
 import io.khasang.pm.entity.Employee;
 
 import java.util.List;
@@ -19,12 +20,12 @@ public interface EmployeeService {
      * @param id - employee's id for receiving
      * @return employee by id
      */
-    Employee getById(long id);
+    EmployeeDto getById(long id);
 
     /**
      * getting all employees
      *
      * @return all employees from DB
      */
-    List<Employee> getAll();
+    List<EmployeeDto> getAll();
 }
