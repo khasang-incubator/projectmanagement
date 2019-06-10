@@ -45,7 +45,7 @@ public class DriverControllerIntegrationTest {
     }
 
     @Test
-    public void checkGettingAllCats() {
+    public void checkGettingAllDrivers() {
         ResponseEntity<List<Driver>> responseEntity = template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
@@ -79,8 +79,8 @@ public class DriverControllerIntegrationTest {
 
         Driver driver = new Driver();
         driver.setName("Turtle");
-        driver.getCars().add(carOne);
-        driver.getCars().add(carTwo);
+        driver.addCar(carOne);
+        driver.addCar(carTwo);
         return driver;
     }
 

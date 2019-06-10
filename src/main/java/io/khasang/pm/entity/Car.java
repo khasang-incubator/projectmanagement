@@ -1,5 +1,7 @@
 package io.khasang.pm.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,10 @@ public class Car {
     private  long id;
     private String model;
     private String number;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "cars", fetch = FetchType.EAGER)
+    private List<Driver> drivers = new ArrayList<>();
 
     public Car(){}
 
@@ -43,5 +49,13 @@ public class Car {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public void setDrivers(List<Driver> drivers) {
+        this.drivers = drivers;
     }
 }

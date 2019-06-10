@@ -39,4 +39,9 @@ public class Driver {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void addCar(Car car){
+        cars.add(car);
+        car.getDrivers().add(this);
+    }
 }
