@@ -1,17 +1,20 @@
 package io.khasang.pm.service.impl;
 
 import io.khasang.pm.dao.DriverDao;
+import io.khasang.pm.dto.DriverDto;
 import io.khasang.pm.entity.Driver;
 import io.khasang.pm.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("driverService")
 public class DriverServiceImpl implements DriverService {
 
     private DriverDao driverDao;
+    private DriverDto driverDto;
 
     @Override
     public Driver add(Driver driver) {
@@ -19,13 +22,20 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Driver getById(long id) {
-        return driverDao.getById(id);
+    public DriverDto getById(long id) {
+        return driverDto.getDriverDto(driverDao.getById(id));
     }
 
     @Override
-    public List<Driver> getAll() {
-        return driverDao.getAll();
+    public List<DriverDto> getAll() {
+        List<Driver> driverList = driverDao.getAll();
+        List<DriverDto> driverDtoList = new ArrayList<>();
+
+        for (Driver driver : driverList) {
+            driverDtoList.add(driverDto.getDriverDto(driver));
+        }
+
+        return driverDtoList;
     }
 
     @Override
@@ -41,5 +51,10 @@ public class DriverServiceImpl implements DriverService {
     @Autowired
     public void setDriverDao(DriverDao driverDao) {
         this.driverDao = driverDao;
+    }
+
+    @Autowired
+    public void setDriverDto(DriverDto driverDto) {
+        this.driverDto = driverDto;
     }
 }

@@ -1,5 +1,6 @@
 package io.khasang.pm.controller;
 
+import io.khasang.pm.dto.DriverDto;
 import io.khasang.pm.entity.Driver;
 import io.khasang.pm.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +23,21 @@ public class DriverController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Driver getById(@PathVariable("id") long id) {
+    public DriverDto getById(@PathVariable("id") long id) {
         return driverService.getById(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Driver> getAll() {
+    public List<DriverDto> getAll() {
         return driverService.getAll();
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public Driver update(@RequestBody Driver driver) {
+        /*
+        DriverDto updateDriverDto = driverService.getById(driver.getId());
         Driver updatedDriver = driverService.getById(driver.getId());
         if (updatedDriver != null) {
             if (!driver.getName().isEmpty()) {
@@ -44,6 +47,8 @@ public class DriverController {
             updatedDriver = driver;
         }
         return driverService.saveOrUpdate(updatedDriver);
+         */
+        return  null;
     }
 
     @Autowired

@@ -16,7 +16,7 @@ public class Car {
     private String model;
     private String number;
 
-    @JsonIgnore
+   // @JsonIgnore
     @ManyToMany(mappedBy = "cars", fetch = FetchType.EAGER)
     private List<Driver> drivers = new ArrayList<>();
 

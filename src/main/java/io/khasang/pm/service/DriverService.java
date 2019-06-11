@@ -1,5 +1,6 @@
 package io.khasang.pm.service;
 
+import io.khasang.pm.dto.DriverDto;
 import io.khasang.pm.entity.Driver;
 import java.util.List;
 
@@ -20,14 +21,14 @@ public interface DriverService {
      * @param id
      * @return driver by id
      */
-    public Driver getById(long id);
+    public DriverDto getById(long id);
 
     /**
      * gettint all drivers
      *
      * @return list of all drivers
      */
-    public List<Driver> getAll();
+    public List<DriverDto> getAll();
 
     /**
      *  update driver in db

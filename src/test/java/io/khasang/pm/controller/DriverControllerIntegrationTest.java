@@ -1,5 +1,6 @@
 package io.khasang.pm.controller;
 
+import io.khasang.pm.dto.DriverDto;
 import io.khasang.pm.entity.Car;
 import io.khasang.pm.entity.Driver;
 import org.junit.Test;
@@ -30,30 +31,30 @@ public class DriverControllerIntegrationTest {
     public void checkAddDriver() {
         Driver newDriver = createDriver();
 
-        ResponseEntity<Driver> responseEntity = template.exchange(
+        ResponseEntity<DriverDto> responseEntity = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
-                Driver.class,
+                DriverDto.class,
                 newDriver.getId()
         );
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Driver reseivedDriver = responseEntity.getBody();
+        DriverDto reseivedDriver = responseEntity.getBody();
         assertNotNull(reseivedDriver);
         assertEquals(newDriver.getName(), reseivedDriver.getName());
     }
 
     @Test
     public void checkGettingAllDrivers() {
-        ResponseEntity<List<Driver>> responseEntity = template.exchange(
+        ResponseEntity<List<DriverDto>> responseEntity = template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Driver>>() {
+                new ParameterizedTypeReference<List<DriverDto>>() {
                 }
         );
-        List<Driver> receivedDrivers = responseEntity.getBody();
+        List<DriverDto> receivedDrivers = responseEntity.getBody();
 
         assertNotNull(receivedDrivers);
         assertFalse(receivedDrivers.isEmpty());
