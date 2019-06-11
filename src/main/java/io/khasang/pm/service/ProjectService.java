@@ -1,5 +1,6 @@
 package io.khasang.pm.service;
 
+import io.khasang.pm.dto.ProjectDto;
 import io.khasang.pm.entity.Cat;
 import io.khasang.pm.entity.Project;
 
@@ -20,12 +21,12 @@ public interface ProjectService {
      * @param id - cat's id for receiving
      * @return cat by id
      */
-    Project getById(long id);
+    ProjectDto getById(long id);
 
     /**
      * getting all cats
      *
      * @return all cats from DB
      */
-    List<Project> getAll();
+    List<ProjectDto> getAll();
 }

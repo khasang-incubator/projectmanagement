@@ -21,6 +21,18 @@ public class Car {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "carList")
     private List<Employee> employees = new ArrayList<>();
 
+//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projectList")
+//    private List<Project> projects = new ArrayList<>();
+
+//    public List<Project> getProjects() {
+//        return projects;
+//    }
+//
+//    public void setProjects(List<Project> projects) {
+//        this.projects = projects;
+//    }
+//private List<Employee> employees = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
