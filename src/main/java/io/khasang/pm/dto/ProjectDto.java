@@ -41,7 +41,6 @@ public class ProjectDto {
     }
 
     private void getBookDtoFromBook(Project project, List<BookDto> bookDtos) {
-        //???
         for (Book book : project.getBookList()) {
             BookDto bookDto = new BookDto();
             bookDto.setId(book.getId());

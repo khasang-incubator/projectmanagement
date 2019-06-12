@@ -9,13 +9,11 @@ import java.util.List;
 @Table(name = "books")
 public class Book {
     @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String model;
     private LocalDate year;
-
-    //    @JsonIgnore
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "bookList")
     private List<Project> projects = new ArrayList<>();

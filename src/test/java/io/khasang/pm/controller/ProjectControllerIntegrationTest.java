@@ -102,10 +102,6 @@ public class ProjectControllerIntegrationTest {
 
         return project;
 
-//        Project project = new Project();
-//        project.setName("project");
-//        project.setDescription("good");
-//        return project;
     }
 
 
