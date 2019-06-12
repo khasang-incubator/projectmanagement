@@ -80,8 +80,9 @@ public class DriverControllerIntegrationTest {
 
         Driver driver = new Driver();
         driver.setName("Turtle");
-        driver.addCar(carOne);
-        driver.addCar(carTwo);
+        driver.getCars().add(carOne);
+        driver.getCars().add(carTwo);
+
         return driver;
     }
 
