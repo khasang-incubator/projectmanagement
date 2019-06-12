@@ -28,8 +28,10 @@ public class AppController {
 
     @RequestMapping("/")
     public String getHelloPage() {
-        return "cat";
+        return "role";
     }
+
+
 
     @RequestMapping("/create")
     public String createTable(Model model) {
