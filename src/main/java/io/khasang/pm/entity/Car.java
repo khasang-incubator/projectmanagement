@@ -1,6 +1,6 @@
 package io.khasang.pm.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,9 +15,13 @@ public class Car {
     private Long id;
 
     private String model;
+
+    // "2017-03-21"
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(columnDefinition = "DATE")
     private LocalDate year;
 
-   // @JsonIgnore
+    // @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "carList")
     private List<Employee> employees = new ArrayList<>();
 
