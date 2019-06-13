@@ -30,9 +30,14 @@ public class AppController {
         return "project";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/getCat")
     public String getHelloPage() {
         return "cat";
+    }
+
+    @RequestMapping("/")
+    public String getRolePage() {
+        return "role";
     }
 
     @RequestMapping("/doc")
