@@ -1,5 +1,6 @@
 package io.khasang.pm.controller;
 
+import io.khasang.pm.dto.DocumentDto;
 import io.khasang.pm.entity.Document;
 import io.khasang.pm.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class DocumentController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Document getById(@PathVariable("id") long id) {
+    public DocumentDto getById(@PathVariable("id") long id) {
         return documentService.getById(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Document> getAll() {
+    public List<DocumentDto> getAll() {
         return documentService.getAll();
     }
 

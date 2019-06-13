@@ -1,6 +1,8 @@
 package io.khasang.pm.service;
 
+import io.khasang.pm.dto.DocumentDto;
 import io.khasang.pm.entity.Document;
+
 import java.util.List;
 
 public interface DocumentService {
@@ -13,17 +15,17 @@ public interface DocumentService {
     Document add(Document document);
 
     /**
-     * getting specify document by ID
+     * getting specify documentDto by ID
      *
      * @param id - document's id for receiving
-     * @return document by id
+     * @return documentDto by id
      */
-    Document getById(long id);
+    DocumentDto getById(long id);
 
     /**
-     * getting all document
+     * getting all documentDto
      *
-     * @return all document from DB
+     * @return all documentDto from DB
      */
-    List<Document> getAll();
+    List<DocumentDto> getAll();
 }
