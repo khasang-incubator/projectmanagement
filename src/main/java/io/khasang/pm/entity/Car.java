@@ -22,9 +22,6 @@ public class Car {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "carList")
     private List<Employee> employees = new ArrayList<>();
 
-    public Car() {
-    }
-
     public Long getId() {
         return id;
     }
