@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class ChildDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "document_id")
+    @Column(name = "child_document_id")
     private long id;
 
     private String name;

@@ -3,7 +3,7 @@ package io.khasang.pm.entity;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "pussy_cats")
 public class CatWoman {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,5 +1,6 @@
 package io.khasang.pm.controller;
 
+import io.khasang.pm.dto.EmployeeDto;
 import io.khasang.pm.entity.Employee;
 import io.khasang.pm.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,13 @@ public class EmployeeController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Employee getById(@PathVariable("id") long id) {
+    public EmployeeDto getById(@PathVariable("id") long id) {
         return employeeService.getById(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Employee> getAll() {
+    public List<EmployeeDto> getAll() {
         return employeeService.getAll();
     }
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/childDocument") // Or child_document
+@RequestMapping("/childDocument")
 public class ChildDocumentController {
     private ChildDocumentService childDocumentService;
 

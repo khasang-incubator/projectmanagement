@@ -1,5 +1,6 @@
 package io.khasang.pm.controller;
 
+import io.khasang.pm.dto.EmployeeDto;
 import io.khasang.pm.entity.Car;
 import io.khasang.pm.entity.Employee;
 import org.junit.Assert;
@@ -26,16 +27,16 @@ public class EmployeeControllerIntegrationTest {
         Employee barsik = createEmployee();
 
         RestTemplate template = new RestTemplate();
-        ResponseEntity<Employee> responseEntity = template.exchange(
+        ResponseEntity<EmployeeDto> responseEntity = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
-                Employee.class,
+                EmployeeDto.class,
                 barsik.getId()
         );
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Employee receivedEmployee = responseEntity.getBody();
+        EmployeeDto receivedEmployee = responseEntity.getBody();
         Assert.assertNotNull(receivedEmployee);
     }
 
@@ -45,15 +46,15 @@ public class EmployeeControllerIntegrationTest {
         createEmployee();
 
         RestTemplate template = new RestTemplate();
-        ResponseEntity<List<Employee>> responseEntity = template.exchange(
+        ResponseEntity<List<EmployeeDto>> responseEntity = template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Employee>>() {
+                new ParameterizedTypeReference<List<EmployeeDto>>() {
                 }
         );
 
-        List<Employee> receivedCats = responseEntity.getBody();
+        List<EmployeeDto> receivedCats = responseEntity.getBody();
         assertNotNull(receivedCats);
     }
 
