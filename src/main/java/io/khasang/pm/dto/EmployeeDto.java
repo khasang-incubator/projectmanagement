@@ -10,6 +10,7 @@ import java.util.List;
 @Component
 public class EmployeeDto {
     private Long id;
+
     private String name;
     private String title;
     private List<CarDto> carDtoList = new ArrayList<>();
@@ -28,7 +29,7 @@ public class EmployeeDto {
     }
 
     private void getCarDtoFromCar(Employee employee, List<CarDto> carDtos) {
-        for (Car car: employee.getCarList()) {
+        for (Car car : employee.getCarList()) {
             CarDto carDto = new CarDto();
             carDto.setId(car.getId());
             carDto.setModel(car.getModel());
