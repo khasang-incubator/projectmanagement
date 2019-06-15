@@ -34,9 +34,4 @@ public class AppConfig {
     public ChildDocumentDao childDocumentDao() {
         return new ChildDocumentDaoImpl(ChildDocument.class);
     }
-
-    /*@Bean
-    public BarsukDao barsukDao() {
-        return new BarsukDaoImpl(Barsuk.class);
-    }*/
 }
