@@ -1,17 +1,20 @@
 package io.khasang.pm.service.impl;
 
 import io.khasang.pm.dao.DocumentDao;
+import io.khasang.pm.dto.DocumentDto;
 import io.khasang.pm.entity.Document;
 import io.khasang.pm.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("documentService")
 public class DocumentServiceImpl implements DocumentService {
 
     private DocumentDao documentDao;
+    private DocumentDto documentDto;
 
     @Override
     public Document add(Document document) {
@@ -19,17 +22,29 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
-    public Document getById(long id) {
-        return documentDao.getById(id);
+    public DocumentDto getById(long id) {
+        return documentDto.getDocumentDto(documentDao.getById(id));
     }
 
     @Override
-    public List<Document> getAll() {
-        return documentDao.getAll();
+    public List<DocumentDto> getAll() {
+        List<Document> documents = documentDao.getAll();
+        List<DocumentDto> documentDtos = new ArrayList<>();
+
+        for (Document document : documents) {
+            documentDtos.add(documentDto.getDocumentDto(document));
+        }
+
+        return documentDtos;
     }
 
     @Autowired
     public void setDocumentDao(DocumentDao documentDao) {
         this.documentDao = documentDao;
+    }
+
+    @Autowired
+    public void setDocumentDto(DocumentDto documentDto) {
+        this.documentDto = documentDto;
     }
 }
