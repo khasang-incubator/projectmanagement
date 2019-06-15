@@ -1,12 +1,21 @@
 package io.khasang.pm.controller;
 
+import io.khasang.pm.entity.Login;
 import io.khasang.pm.entity.Role;
-import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class RoleControllerIntegrationTest {
     private static final String ROOT = "http://localhost:8080/role";
@@ -55,6 +64,20 @@ public class RoleControllerIntegrationTest {
         Role role = new Role();
         role.setName("testRole");
         role.setDescription("test role only for integration test");
+
+        Login loginOne = new Login();
+        loginOne.setName("loginOne");
+        loginOne.setDescription("This is login number one");
+
+        Login loginTwo = new Login();
+        loginTwo.setName("loginTwo");
+        loginTwo.setDescription("This is login number two");
+
+        List<Login> logins = new ArrayList<>();
+        logins.add(loginOne);
+        logins.add(loginTwo);
+
+        role.setLogin(logins);
         return role;
     }
 }
