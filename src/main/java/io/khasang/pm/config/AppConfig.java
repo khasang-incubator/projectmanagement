@@ -1,8 +1,20 @@
 package io.khasang.pm.config;
 
-import io.khasang.pm.dao.*;
-import io.khasang.pm.dao.impl.*;
-import io.khasang.pm.entity.*;
+import io.khasang.pm.dao.CatDao;
+import io.khasang.pm.dao.ChildDocumentDao;
+import io.khasang.pm.dao.DocumentDao;
+import io.khasang.pm.dao.EmployeeDao;
+import io.khasang.pm.dao.ProjectDao;
+import io.khasang.pm.dao.impl.CatDaoImpl;
+import io.khasang.pm.dao.impl.ChildDocumentDaoImpl;
+import io.khasang.pm.dao.impl.DocumentDaoImpl;
+import io.khasang.pm.dao.impl.EmployeeDaoImpl;
+import io.khasang.pm.dao.impl.ProjectDaoImpl;
+import io.khasang.pm.entity.Cat;
+import io.khasang.pm.entity.ChildDocument;
+import io.khasang.pm.entity.Document;
+import io.khasang.pm.entity.Employee;
+import io.khasang.pm.entity.Project;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
