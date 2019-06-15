@@ -3,6 +3,7 @@ package io.khasang.pm.dto;
 import java.time.LocalDate;
 
 public class CarDto {
+
     private Long id;
     private String model;
     private LocalDate year;
@@ -30,4 +31,5 @@ public class CarDto {
     public void setYear(LocalDate year) {
         this.year = year;
     }
+
 }
