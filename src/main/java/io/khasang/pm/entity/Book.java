@@ -18,7 +18,6 @@ public class Book {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "bookList")
     private List<Project> projects = new ArrayList<>();
 
-
     public Long getId() {
         return id;
     }

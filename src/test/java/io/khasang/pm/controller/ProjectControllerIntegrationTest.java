@@ -81,7 +81,6 @@ public class ProjectControllerIntegrationTest {
     }
 
     private Project prefillProject() {
-
         Project project = new Project();
         project.setDescription("Boss");
         project.setName("BarsikProject");
@@ -101,8 +100,6 @@ public class ProjectControllerIntegrationTest {
         project.setBookList(books);
 
         return project;
-
     }
-
 
 }
