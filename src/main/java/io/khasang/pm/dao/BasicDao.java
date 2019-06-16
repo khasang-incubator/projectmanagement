@@ -11,6 +11,10 @@ public interface BasicDao<T> {
      */
     T add(T entity);
 
+    T update(T entity);
+
+    T delete(T entity);
+
     /**
      * getting specify entity by ID
      *
