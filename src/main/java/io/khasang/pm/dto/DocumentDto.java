@@ -1,19 +1,29 @@
-package io.khasang.pm.entity;
+package io.khasang.pm.dto;
 
-import javax.persistence.*;
+import io.khasang.pm.entity.Document;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "documents")
-public class Document {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+@Component
+public class DocumentDto {
     private long id;
     private String docNumber;
     private LocalDate docDate;
     private String author;
     private String type;
     private String content;
+
+    public DocumentDto getDocumentDto(Document document) {
+        DocumentDto documentDto = new DocumentDto();
+        documentDto.setId(document.getId());
+        documentDto.setDocNumber(document.getDocNumber());
+        documentDto.setDocDate(document.getDocDate());
+        documentDto.setAuthor(document.getAuthor());
+        documentDto.setType(document.getType());
+        documentDto.setContent(document.getContent());
+        return documentDto;
+    }
 
     public long getId() {
         return id;
@@ -35,8 +45,8 @@ public class Document {
         return docDate;
     }
 
-    public void setDocDate(LocalDate dateDoc) {
-        this.docDate = dateDoc;
+    public void setDocDate(LocalDate docDate) {
+        this.docDate = docDate;
     }
 
     public String getAuthor() {

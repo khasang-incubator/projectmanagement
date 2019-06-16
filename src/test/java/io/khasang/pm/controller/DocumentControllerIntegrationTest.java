@@ -1,12 +1,23 @@
 package io.khasang.pm.controller;
 
+import io.khasang.pm.dto.DocumentDto;
 import io.khasang.pm.entity.Document;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import java.sql.Date;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class DocumentControllerIntegrationTest {
@@ -27,33 +38,33 @@ public class DocumentControllerIntegrationTest {
     @Test
     public void checkAddDocument() {
         Document document = createDoc();
-        ResponseEntity<Document> responseEntity = template.exchange(
+        ResponseEntity<DocumentDto> responseEntity = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
-                Document.class,
+                DocumentDto.class,
                 document.getId()
         );
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Document reseivedDoc = responseEntity.getBody();
+        DocumentDto reseivedDoc = responseEntity.getBody();
         assertNotNull(reseivedDoc);
         assertEquals(document.getDocNumber(), reseivedDoc.getDocNumber());
     }
 
     @Test
     public void checkGettingAllDocuments() {
-        ResponseEntity<List<Document>> responseEntity = template.exchange(
+        ResponseEntity<List<DocumentDto>> responseEntity = template.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Document>>() {
+                new ParameterizedTypeReference<List<DocumentDto>>() {
                 }
         );
-        List<Document> receivedCats = responseEntity.getBody();
+        List<DocumentDto> receivedDocuments = responseEntity.getBody();
 
-        assertNotNull(receivedCats);
-        assertFalse(receivedCats.isEmpty());
+        assertNotNull(receivedDocuments);
+        assertFalse(receivedDocuments.isEmpty());
     }
 
     private Document createDoc() {
@@ -74,7 +85,7 @@ public class DocumentControllerIntegrationTest {
     private Document prefillDocument() {
         Document doc = new Document();
         doc.setDocNumber("12345/o/99");
-        doc.setDocDate(Date.valueOf("2019-06-04"));
+        doc.setDocDate(LocalDate.of(2019, 6, 4));
         doc.setAuthor("Anonimus");
         doc.setContent("Freedom to parrots!!!");
         doc.setType("declaration");

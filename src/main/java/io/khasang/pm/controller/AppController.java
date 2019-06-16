@@ -35,6 +35,11 @@ public class AppController {
         return "cat";
     }
 
+    @RequestMapping("/childDocument")
+    public String getСhildDocumentPage() {
+        return "childdocument";
+    }
+
     @RequestMapping("/doc")
     public String workWithDoc() {
         return "doc";
