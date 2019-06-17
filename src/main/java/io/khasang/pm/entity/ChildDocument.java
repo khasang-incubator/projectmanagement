@@ -3,7 +3,6 @@ package io.khasang.pm.entity;
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "documents")
 public class ChildDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
