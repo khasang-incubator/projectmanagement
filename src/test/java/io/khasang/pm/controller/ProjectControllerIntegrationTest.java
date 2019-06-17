@@ -61,7 +61,6 @@ public class ProjectControllerIntegrationTest {
         assertNotNull(receivedProjects);
     }
 
-
     @Test
     public void checkDeletingProject() {
         Project project = createProject();
