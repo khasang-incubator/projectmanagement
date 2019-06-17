@@ -46,6 +46,16 @@ public class ProjectServiceImpl implements ProjectService {
         return projectDtos;
     }
 
+    @Override
+    public ProjectDto update(Project project) {
+        return projectDto.getProjectDto(projectDao.update(project));
+    }
+
+    @Override
+    public ProjectDto delete(long id) {
+        return projectDto.getProjectDto(projectDao.delete(projectDao.getById(id)));
+    }
+
     @Autowired
     public void setProjectDao(ProjectDao projectDao) {
         this.projectDao = projectDao;

@@ -21,6 +21,8 @@ public class ProjectControllerIntegrationTest {
     private static final String ADD = "/add";
     private static final String GET = "/get";
     private static final String ALL = "/all";
+    private static final String DELETE = "/delete";
+    private static final String UPDATE = "/update";
 
     @Test
     public void checkAddProject() {
@@ -43,7 +45,6 @@ public class ProjectControllerIntegrationTest {
 
     @Test
     public void checkGettingAllProjects() {
-        // add h2db  - before test clean all db data
         createProject();
         createProject();
 
@@ -58,6 +59,25 @@ public class ProjectControllerIntegrationTest {
 
         List<ProjectDto> receivedProjects = responseEntity.getBody();
         assertNotNull(receivedProjects);
+    }
+
+
+    @Test
+    public void checkDeletingProject() {
+        Project project = createProject();
+
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<ProjectDto> responseEntity = template.exchange(
+                ROOT + DELETE + "/{id}",
+                HttpMethod.DELETE,
+                null,
+                ProjectDto.class,
+                project.getId());
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        ProjectDto deletedProject = responseEntity.getBody();
+        assertNotNull(deletedProject);
+        assertEquals(project.getId(), deletedProject.getId());
     }
 
     private Project createProject() {

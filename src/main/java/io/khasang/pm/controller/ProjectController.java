@@ -34,6 +34,18 @@ public class ProjectController {
         return projectService.getAll();
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public ProjectDto update(@RequestBody Project project){
+        return projectService.update(project);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public ProjectDto delete(@PathVariable("id") long id){
+        return projectService.delete(id);
+    }
+
     @Autowired
     public void setProjectService(ProjectService projectService) {
         this.projectService = projectService;
