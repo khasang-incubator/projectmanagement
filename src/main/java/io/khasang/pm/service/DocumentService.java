@@ -28,4 +28,20 @@ public interface DocumentService {
      * @return all documentDto from DB
      */
     List<DocumentDto> getAll();
+
+    /**
+     * updating document in db
+     *
+     * @param document - document for updating
+     * @return updated document
+     */
+    DocumentDto update(Document document);
+
+    /**
+     * deleting document by id from db
+     *
+     * @param id - id document's for deletint
+     * @return deleting document
+     */
+    DocumentDto delete(long id);
 }

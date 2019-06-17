@@ -38,6 +38,16 @@ public class DocumentServiceImpl implements DocumentService {
         return documentDtos;
     }
 
+    @Override
+    public DocumentDto update(Document document) {
+        return documentDto.getDocumentDto(documentDao.update(document));
+    }
+
+    @Override
+    public DocumentDto delete(long id) {
+        return documentDto.getDocumentDto(documentDao.delete(documentDao.getById(id)));
+    }
+
     @Autowired
     public void setDocumentDao(DocumentDao documentDao) {
         this.documentDao = documentDao;

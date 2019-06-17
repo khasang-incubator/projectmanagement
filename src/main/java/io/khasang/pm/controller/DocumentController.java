@@ -33,6 +33,18 @@ public class DocumentController {
         return documentService.getAll();
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public DocumentDto update(@RequestBody Document document){
+        return documentService.update(document);
+    }
+
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public DocumentDto delete(@PathVariable("id") long id){
+        return documentService.delete(id);
+    }
+
     @Autowired
     public void setDocumentService(DocumentService documentService) {
         this.documentService = documentService;
