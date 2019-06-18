@@ -27,4 +27,28 @@ public interface CatService {
      * @return all cats from DB
      */
     List<Cat> getAll();
+
+    /**
+     * getting specify cat by name
+     *
+     * @param name - cat's name for receiving
+     * @return cat by name
+     */
+    List<Cat> getByName(String name);
+
+    /**
+     * required for updating cats into db
+     *
+     * @param cat - cat for update
+     * @return updated cat
+     */
+    Cat update(Cat cat);
+
+    /**
+     * delete specify cat by ID
+     *
+     * @param id - cat's id for deletion
+     * @return deleted cat by id
+     */
+    Cat delete(long id);
 }

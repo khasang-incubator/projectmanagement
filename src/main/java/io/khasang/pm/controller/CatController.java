@@ -26,10 +26,28 @@ public class CatController {
         return catService.getById(id);
     }
 
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Cat> getById(@PathVariable("name") String name) {
+        return catService.getByName(name);
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Cat> getAll(){
+    public List<Cat> getAll() {
         return catService.getAll();
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @ResponseBody
+    public Cat updateCat(@RequestBody Cat cat) {
+        return catService.update(cat);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Cat deleteById(@PathVariable("id") long id) {
+        return catService.delete(id);
     }
 
     @Autowired
