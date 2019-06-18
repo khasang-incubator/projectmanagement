@@ -110,7 +110,7 @@ public class CatControllerIntegrationTest {
 
         TimeUnit.MILLISECONDS.sleep(100);
 
-        ResponseEntity<Cat> responseEntity3= template.exchange(
+        ResponseEntity<Cat> responseEntity3 = template.exchange(
                 ROOT + GET + "/{id}",
                 HttpMethod.GET,
                 null,
@@ -122,7 +122,7 @@ public class CatControllerIntegrationTest {
         assertNull(responseEntity3.getBody());
     }
 
-        @Test
+    @Test
     public void checkGettingAllCats() {
         // add h2db  - before test clean all db data
         createCat();
