@@ -1,7 +1,6 @@
 package io.khasang.pm.service;
 
 import io.khasang.pm.dto.ProjectDto;
-import io.khasang.pm.entity.Cat;
 import io.khasang.pm.entity.Project;
 
 import java.util.List;

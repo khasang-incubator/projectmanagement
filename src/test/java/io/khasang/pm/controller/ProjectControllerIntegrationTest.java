@@ -40,7 +40,6 @@ public class ProjectControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ProjectDto receivedProject = responseEntity.getBody();
         Assert.assertNotNull(receivedProject);
-
     }
 
     @Test

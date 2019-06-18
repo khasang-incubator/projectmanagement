@@ -9,9 +9,7 @@ import java.util.List;
 
 @Component
 public class ProjectDto {
-
     private long id;
-
     private String name;
     private String description;
     private String time;

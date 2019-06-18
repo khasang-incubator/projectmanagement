@@ -3,7 +3,6 @@ package io.khasang.pm.dto;
 import java.time.LocalDate;
 
 public class BookDto {
-
     private Long id;
     private String model;
     private LocalDate year;
