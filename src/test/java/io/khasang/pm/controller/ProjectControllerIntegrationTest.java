@@ -8,12 +8,13 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class ProjectControllerIntegrationTest {
 
@@ -61,6 +62,46 @@ public class ProjectControllerIntegrationTest {
     }
 
     @Test
+    public void checkProjectUpdate() throws URISyntaxException {
+        Project project = createProject();
+
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<Project> responseEntity = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                Project.class,
+                project.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Project receivedProject = responseEntity.getBody();
+        Assert.assertNotNull(receivedProject);
+
+        receivedProject.setName("murzik_project");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        HttpEntity<Project> entity = new HttpEntity<>(receivedProject, headers);
+        Project updatedProject = template.exchange(
+                ROOT + UPDATE,
+                HttpMethod.PUT,
+                entity,
+                Project.class
+        ).getBody();
+
+        assertEquals("murzik_project", updatedProject.getName());
+        ResponseEntity<Project> responseEntity2 = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                Project.class,
+                updatedProject.getId()
+        );
+        assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
+        assertEquals("murzik_project", responseEntity2.getBody().getName());
+    }
+
+    @Test
     public void checkDeletingProject() {
         Project project = createProject();
 
@@ -77,6 +118,48 @@ public class ProjectControllerIntegrationTest {
         assertNotNull(deletedProject);
         assertEquals(project.getId(), deletedProject.getId());
     }
+
+
+    @Test
+    public void checkDelete() throws InterruptedException {
+        Project project = createProject();
+
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<Project> responseEntity = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                Project.class,
+                project.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        Project receivedProject = responseEntity.getBody();
+        Assert.assertNotNull(receivedProject);
+
+        ResponseEntity<Project> responseEntity2 = template.exchange(
+                ROOT + DELETE + "/{id}",
+                HttpMethod.DELETE,
+                null,
+                Project.class,
+                receivedProject.getId()
+        );
+        assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
+
+        TimeUnit.MILLISECONDS.sleep(100);
+
+//        ResponseEntity<Project> responseEntity3= template.exchange(
+//                ROOT + GET + "/{id}",
+//                HttpMethod.GET,
+//                null,
+//                Project.class,
+//                receivedProject.getId()
+//        );
+//
+//        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+//        assertNull(responseEntity3.getBody());
+    }
+
 
     private Project createProject() {
         HttpHeaders headers = new HttpHeaders();
