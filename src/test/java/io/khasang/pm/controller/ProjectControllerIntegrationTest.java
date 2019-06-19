@@ -102,25 +102,6 @@ public class ProjectControllerIntegrationTest {
     }
 
     @Test
-    public void checkDeletingProject() {
-        Project project = createProject();
-
-        RestTemplate template = new RestTemplate();
-        ResponseEntity<ProjectDto> responseEntity = template.exchange(
-                ROOT + DELETE + "/{id}",
-                HttpMethod.DELETE,
-                null,
-                ProjectDto.class,
-                project.getId());
-
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        ProjectDto deletedProject = responseEntity.getBody();
-        assertNotNull(deletedProject);
-        assertEquals(project.getId(), deletedProject.getId());
-    }
-
-
-    @Test
     public void checkDelete() throws InterruptedException {
         Project project = createProject();
 
