@@ -44,4 +44,11 @@ public interface ProjectService {
      * @return deleting project
      */
     ProjectDto delete(long id);
+    /**
+     * getting specify project by name
+     *
+     * @param name - project's name for receiving
+     * @return project by name
+     */
+    List<Project> getByName(String name);
 }

@@ -28,6 +28,12 @@ public class ProjectController {
         return projectService.getById(id);
     }
 
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Project> getById(@PathVariable("name") String name) {
+        return projectService.getByName(name);
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<ProjectDto> getAll(){
