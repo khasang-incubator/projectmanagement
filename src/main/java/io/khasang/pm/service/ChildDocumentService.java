@@ -25,5 +25,10 @@ public interface ChildDocumentService {
      */
     ChildDocument getById(long id);
 
+    /**
+     * getting all childDocuments
+     *
+     * @return all childDocuments from db
+     */
     List<ChildDocument> getAllChildDocuments();
 }
