@@ -17,6 +17,12 @@ public interface ChildDocumentService {
 
     ChildDocument delete(long id);
 
+    /**
+     * getting specify childDocument by ID
+     *
+     * @param id - childDocument's id for receiving
+     * @return childDocument by id
+     */
     ChildDocument getById(long id);
 
     List<ChildDocument> getAllChildDocuments();
