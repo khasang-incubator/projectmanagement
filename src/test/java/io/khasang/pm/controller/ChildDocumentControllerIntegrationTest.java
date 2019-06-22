@@ -7,6 +7,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
@@ -77,7 +78,7 @@ public class ChildDocumentControllerIntegrationTest {
     }
 
     @Test
-    public void checkChildDocumentDelete() {
+    public void checkChildDocumentDelete() throws InterruptedException {
         ChildDocument childDocument = createChildDocument();
         RestTemplate template = new RestTemplate();
         ResponseEntity<ChildDocument> responseEntity = template.exchange(
@@ -100,6 +101,8 @@ public class ChildDocumentControllerIntegrationTest {
                 receivedChildDocument.getId()
         );
         assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
+
+        TimeUnit.MILLISECONDS.sleep(100);
 
         ResponseEntity<ChildDocument> responseEntity3 = template.exchange(
                 ROOT + GET + "/{id}",
