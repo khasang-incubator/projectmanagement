@@ -13,6 +13,12 @@ public interface ChildDocumentService {
      */
     ChildDocument add(ChildDocument childDocument);
 
+    /**
+     * required for updating childDocument into db
+     *
+     * @param childDocument - childDocument for updating
+     * @return updated childDocument
+     */
     ChildDocument update(ChildDocument childDocument);
 
     /**
