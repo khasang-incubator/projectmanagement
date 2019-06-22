@@ -15,6 +15,12 @@ public interface ChildDocumentService {
 
     ChildDocument update(ChildDocument childDocument);
 
+    /**
+     * required for deleting childDocument by ID from db
+     *
+     * @param id - childDocument for deleting
+     * @return deleted childDocument
+     */
     ChildDocument delete(long id);
 
     /**
