@@ -14,6 +14,7 @@ public class ChildDocumentControllerIntegrationTest {
     private static final String ROOT = "http://localhost:8080/childDocument";
     private static final String ADD = "/add";
     private static final String UPDATE = "/update";
+    private static final String DELETE = "/delete";
     private static final String GET = "/get";
     private static final String ALL = "/all";
 
@@ -73,6 +74,42 @@ public class ChildDocumentControllerIntegrationTest {
 
         assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
         assertEquals("NameUpdatedFromIntegrationTest", responseEntity2.getBody().getName());
+    }
+
+    @Test
+    public void checkChildDocumentDelete() {
+        ChildDocument childDocument = createChildDocument();
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<ChildDocument> responseEntity = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                ChildDocument.class,
+                childDocument.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        ChildDocument receivedChildDocument = responseEntity.getBody();
+        assertNotNull(receivedChildDocument);
+
+        ResponseEntity<ChildDocument> responseEntity2 = template.exchange(
+                ROOT + DELETE + "/{id}",
+                HttpMethod.DELETE,
+                null,
+                ChildDocument.class,
+                receivedChildDocument.getId()
+        );
+        assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
+
+        ResponseEntity<ChildDocument> responseEntity3 = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                ChildDocument.class,
+                receivedChildDocument.getId()
+        );
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertNull(responseEntity3.getBody());
     }
 
     @Test
