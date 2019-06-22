@@ -11,8 +11,20 @@ public interface BasicDao<T> {
      */
     T add(T entity);
 
+    /**
+     * required for updating entities into db
+     *
+     * @param entity - entity for update
+     * @return updated entity
+     */
     T update(T entity);
 
+    /**
+     * delete specify entity by ID
+     *
+     * @param entity - entity for deletion
+     * @return deleted entity
+     */
     T delete(T entity);
 
     /**

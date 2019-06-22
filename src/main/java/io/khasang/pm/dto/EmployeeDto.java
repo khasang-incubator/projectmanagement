@@ -4,8 +4,7 @@ import io.khasang.pm.entity.Car;
 import io.khasang.pm.entity.Employee;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class EmployeeDto {
@@ -21,6 +20,10 @@ public class EmployeeDto {
         employeeDto.setName(employee.getName());
         employeeDto.setId(employee.getId());
         employeeDto.setTitle(employee.getTitle());
+        HashSet et;
+        LinkedList l;
+        Stack s;
+        TreeSet t;
 
         getCarDtoFromCar(employee, carDtos);
 

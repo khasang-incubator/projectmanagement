@@ -1,5 +1,6 @@
 package io.khasang.pm.controller;
 
+import io.khasang.pm.dto.ProjectDto;
 import io.khasang.pm.entity.Cat;
 import io.khasang.pm.entity.Project;
 import io.khasang.pm.service.CatService;
@@ -23,14 +24,26 @@ public class ProjectController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Project getById(@PathVariable("id") long id) {
+    public ProjectDto getById(@PathVariable("id") long id) {
         return projectService.getById(id);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Project> getAll(){
+    public List<ProjectDto> getAll(){
         return projectService.getAll();
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public ProjectDto update(@RequestBody Project project){
+        return projectService.update(project);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public ProjectDto delete(@PathVariable("id") long id){
+        return projectService.delete(id);
     }
 
     @Autowired
