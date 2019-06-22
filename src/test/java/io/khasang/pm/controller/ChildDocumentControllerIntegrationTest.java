@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class ChildDocumentControllerIntegrationTest {
     private static final String ROOT = "http://localhost:8080/childDocument";
     private static final String ADD = "/add";
+    private static final String UPDATE = "/update";
     private static final String GET = "/get";
     private static final String ALL = "/all";
 
@@ -31,6 +32,47 @@ public class ChildDocumentControllerIntegrationTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         ChildDocument receivedChildDocument = responseEntity.getBody();
         assertNotNull(receivedChildDocument);
+    }
+
+    @Test
+    public void checkChildDocumentUpdate() {
+        ChildDocument childDocument = createChildDocument();
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<ChildDocument> responseEntity = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                ChildDocument.class,
+                childDocument.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        ChildDocument receivedChildDocument = responseEntity.getBody();
+        assertNotNull(receivedChildDocument);
+
+        receivedChildDocument.setName("NameUpdatedFromIntegrationTest");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        HttpEntity<ChildDocument> entity = new HttpEntity<>(receivedChildDocument, headers);
+        ChildDocument updatedChilDDocument = template.exchange(
+                ROOT + UPDATE,
+                HttpMethod.PUT,
+                entity,
+                ChildDocument.class
+        ).getBody();
+
+        assertEquals("NameUpdatedFromIntegrationTest", updatedChilDDocument.getName());
+
+        ResponseEntity<ChildDocument> responseEntity2 = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                ChildDocument.class,
+                updatedChilDDocument.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
+        assertEquals("NameUpdatedFromIntegrationTest", responseEntity2.getBody().getName());
     }
 
     @Test
