@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URISyntaxException;
@@ -101,7 +103,7 @@ public class ProjectControllerIntegrationTest {
         assertEquals("murzik_project", responseEntity2.getBody().getName());
     }
 
-    @Test
+    @Test (expected = Exception.class)
     public void checkDelete() throws InterruptedException {
         Project project = createProject();
 
@@ -129,16 +131,16 @@ public class ProjectControllerIntegrationTest {
 
         TimeUnit.MILLISECONDS.sleep(100);
 
-//        ResponseEntity<Project> responseEntity3= template.exchange(
-//                ROOT + GET + "/{id}",
-//                HttpMethod.GET,
-//                null,
-//                Project.class,
-//                receivedProject.getId()
-//        );
-//
-//        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-//        assertNull(responseEntity3.getBody());
+        ResponseEntity<Project> responseEntity3 = template.exchange(
+                ROOT + GET + "/{id}",
+                HttpMethod.GET,
+                null,
+                Project.class,
+                receivedProject.getId()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertNull(responseEntity3.getBody());
     }
 
 
