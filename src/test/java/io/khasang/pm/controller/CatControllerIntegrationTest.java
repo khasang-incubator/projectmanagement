@@ -118,8 +118,9 @@ public class CatControllerIntegrationTest {
                 Cat.class,
                 receivedCat.getId()
         );
-
+        System.err.println("ad");
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        System.err.println("asdd");
         assertNull(responseEntity3.getBody());
     }
 
