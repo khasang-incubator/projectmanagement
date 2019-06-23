@@ -107,6 +107,8 @@ public class CatControllerIntegrationTest {
                 receivedCat.getId()
         );
         assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
+        System.err.println(11);
+        assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
 
         TimeUnit.MILLISECONDS.sleep(100);
 
