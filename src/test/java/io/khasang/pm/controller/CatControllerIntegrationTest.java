@@ -106,7 +106,9 @@ public class CatControllerIntegrationTest {
                 Cat.class,
                 receivedCat.getId()
         );
-        assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
+        System.err.println(11);
+        assertEquals(HttpStatus.ACCEPTED, responseEntity2.getStatusCode());
+        System.err.println("asd");
         System.err.println(11);
         assertEquals(HttpStatus.OK, responseEntity2.getStatusCode());
 
