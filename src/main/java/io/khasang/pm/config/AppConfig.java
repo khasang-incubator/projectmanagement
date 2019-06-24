@@ -29,12 +29,18 @@ public class AppConfig {
     }
 
     @Bean
-    public ProjectDao projectDao() {return new ProjectDaoImpl(Project.class);
+    public ProjectDao projectDao() {
+        return new ProjectDaoImpl(Project.class);
     }
 
     @Bean
     public DocumentDao documentDao(){
         return new DocumentDaoImpl(Document.class);
+    }
+
+    @Bean
+    public RoleDao roleDao() {
+        return new RoleDaoImpl(Role.class);
     }
 
     @Bean
