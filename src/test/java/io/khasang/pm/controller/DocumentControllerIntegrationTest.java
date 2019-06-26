@@ -24,6 +24,8 @@ public class DocumentControllerIntegrationTest {
 
     private static final String ROOT = "http://localhost:8080/doc";
     private static final String ADD = "/add";
+    private static final String DELETE = "/del";
+    private static final String UPDATE = "/update";
     private static final String GET = "/get";
     private static final String ALL = "/all";
     private RestTemplate template;
@@ -65,6 +67,40 @@ public class DocumentControllerIntegrationTest {
 
         assertNotNull(receivedDocuments);
         assertFalse(receivedDocuments.isEmpty());
+    }
+
+    @Test
+    public void checkUpdatingDocument() {
+        Document doc = createDoc();
+        doc.setContent("new content");
+
+        ResponseEntity<DocumentDto> responseEntity = template.exchange(
+                ROOT + UPDATE,
+                HttpMethod.PUT,
+                createHttpEntity(doc),
+                DocumentDto.class);
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        DocumentDto reseivedDoc = responseEntity.getBody();
+        assertNotNull(reseivedDoc);
+        assertEquals(doc.getContent(), reseivedDoc.getContent());
+    }
+
+    @Test
+    public void checkDeletingDocument() {
+        Document doc = createDoc();
+
+        ResponseEntity<DocumentDto> responseEntity = template.exchange(
+                ROOT + DELETE + "/{id}",
+                HttpMethod.DELETE,
+                createHttpEntity(doc),
+                DocumentDto.class,
+                doc.getId());
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        DocumentDto deletedDoc = responseEntity.getBody();
+        assertNotNull(deletedDoc);
+        assertEquals(doc.getId(), deletedDoc.getId());
     }
 
     private Document createDoc() {
